@@ -2,6 +2,7 @@ import 'dart:core';
 
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 import 'package:t_store/utils/formatters/formatter.dart';
 
 
@@ -64,7 +65,7 @@ class UserModel {
   String lastName;
   String phoneNumber;
   String profilePicture;
-  
+   
   // Constructor for UserModel
   UserModel({
     required this.id,
@@ -98,7 +99,7 @@ class UserModel {
   // Static function to create an empty user model.
   static UserModel empty() => UserModel(
       id: "",
-      firstName: "",
+      firstName: "aa",
       lastName: "",
       username: "",
       email: "",
@@ -118,8 +119,8 @@ class UserModel {
   }
 
   // Factory method to create a UserModel from a Firebase document snapshot.
-  factory UserModel.fromSnapshot(
-      DocumentSnapshot<Map<String, dynamic>> document) {
+  factory UserModel.fromSnapshot( DocumentSnapshot<Map<String, dynamic>> document) {
+   if(document.data()!=null){ 
     final data = document.data()!;
     return UserModel(
       id: document.id,
@@ -131,4 +132,15 @@ class UserModel {
       profilePicture: data['ProfilePicture'] ?? "",
     );
   }
+  else{
+    return UserModel.empty();
+  }
+  }
+
+
+   
+  
+
+   
+
 }

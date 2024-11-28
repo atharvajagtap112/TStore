@@ -8,7 +8,26 @@ class UserController extends GetxController{
    static UserController get instance=> Get.find(); // single line function
    // whenever we want to use object of usercontroller we can use these function we dont need to use get.put again and again 
    //the get.find will find the instance from memory and use it 
-
+   Rx<UserModel>user=UserModel.empty().obs;  
+   final userRepository=Get.put(UserRepository());
+    @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    fetchUserRecord();
+  }
+    
+    
+    Future<void> fetchUserRecord() async{
+        try{
+        final user= await userRepository.fetchUserDetails();
+        this.user(user);
+        }
+        catch(e){
+          user(UserModel.empty());
+        }
+    }
+     
    Future<void> saveUserRecord(UserCredential? userCredential) async{
     
     try{    
@@ -43,4 +62,4 @@ class UserController extends GetxController{
   }
    }
 
-}
+}          
