@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
               child:  Column(
                 children:  [
                   //Custom AppBar
-                 THomeAppBar(),
+                 const THomeAppBar(),
                 const  SizedBox(height: TSizes.spaceBtwSections,),
 
                    // Searchbar

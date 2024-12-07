@@ -5,6 +5,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:t_store/data/repositories/user/user_repository.dart';
 import 'package:t_store/features/authentication/screens/login/login.dart';
 import 'package:t_store/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:t_store/features/authentication/screens/signup/widgets/verify_email.dart';
@@ -206,5 +207,51 @@ class AuthenticationRepository extends GetxController{
               throw 'Something went wrong. please try again';
             }
 
+  }
+
+  //[ReAuthenticate] = RE AUTHENTICATE USER
+  Future<void> reAuthenticateWithEmailAndPassword  (String email, String password) async{
+    try{
+      final credential=EmailAuthProvider.credential(email: email, password: password);
+       await FirebaseAuth.instance.currentUser!.reauthenticateWithCredential(credential);
+    }
+       on FirebaseAuthException catch(e){
+              throw TFirebaseAuthException(e.code).message;
+            }
+            on FirebaseException catch(e){
+               throw TFirebaseAuthException(e.code).message;
+            }
+            on FormatException catch(_){
+               throw const TFormatException();
+            }
+            on PlatformException catch(e){
+              throw TPlatformException(e.code);
+            }
+            catch(e){
+              throw 'Something went wrong. please try again';
+            }
+  }
+   
+   //DELETE USER - Remove user Auth and Firestore Account.
+  Future<void> deleteAccount() async{
+    try{
+      UserRepository.instance.removeUserRecord(authUser!.uid);
+      FirebaseAuth.instance.currentUser?.delete();
+    }
+        on FirebaseAuthException catch(e){
+              throw TFirebaseAuthException(e.code).message;
+            }
+            on FirebaseException catch(e){
+               throw TFirebaseAuthException(e.code).message;
+            }
+            on FormatException catch(_){
+               throw const TFormatException();
+            }
+            on PlatformException catch(e){
+              throw TPlatformException(e.code);
+            }
+            catch(e){
+              throw 'Something went wrong. please try again';
+            }
   }
 }

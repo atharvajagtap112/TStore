@@ -7,6 +7,7 @@ import 'package:t_store/common/widgets/list_tiles/setting_menu_tilte.dart';
 import 'package:t_store/common/widgets/list_tiles/t_userprofile_tile.dart';
 import 'package:t_store/common/widgets/selection_heading.dart';
 import 'package:t_store/data/repositories/authentication/authentication_repository.dart';
+import 'package:t_store/features/personalization/controllers/user_controller.dart';
 import 'package:t_store/features/personalization/screens/address/address.dart';
 import 'package:t_store/features/shop/screens/order/order.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -16,6 +17,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller=UserController.instance;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
