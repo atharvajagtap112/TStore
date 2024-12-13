@@ -5,7 +5,7 @@ class TSettingMenuTile extends StatelessWidget {
   const TSettingMenuTile({super.key, 
   required this.icon,
    required this.title, 
-   required this.subTitle, 
+    this.subTitle="", 
     this.trailing,
     this.onTap
     });

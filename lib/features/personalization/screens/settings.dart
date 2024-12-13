@@ -9,6 +9,7 @@ import 'package:t_store/common/widgets/selection_heading.dart';
 import 'package:t_store/data/repositories/authentication/authentication_repository.dart';
 import 'package:t_store/features/personalization/controllers/user_controller.dart';
 import 'package:t_store/features/personalization/screens/address/address.dart';
+import 'package:t_store/features/personalization/screens/load_data.dart/upload.dart';
 import 'package:t_store/features/shop/screens/order/order.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
@@ -54,7 +55,7 @@ class SettingsScreen extends StatelessWidget {
                     const SizedBox(height: TSizes.spaceBtwSections),
                     const TSelectionHeading( title : 'App Settings', showActionButton: false),
                     const SizedBox(height: TSizes.spaceBtwItems),
-                    const TSettingMenuTile(icon: Iconsax.document_upload, title: 'Load Data', subTitle: 'Upload Data to your Cloud Firebase'),
+                     TSettingMenuTile(icon: Iconsax.document_upload, title: 'Load Data', subTitle: 'Upload Data to your Cloud Firebase',onTap: () => Get.to(()=> const UploadData()),  ),
                       
                       TSettingMenuTile(
                        icon: Iconsax.location,

@@ -7,6 +7,7 @@ import 'package:t_store/common/widgets/layouts/TGridLayout.dart';
 import 'package:t_store/common/widgets/product/cart/cart_menu_icon.dart';
 import 'package:t_store/common/widgets/product/product_cards/TBrandCard.dart';
 import 'package:t_store/common/widgets/selection_heading.dart';
+import 'package:t_store/features/personalization/controllers/category_controller.dart';
 import 'package:t_store/features/shop/screens/brand/all_brand.dart';
 
 import 'package:t_store/features/shop/screens/store/widgets/categorytab.dart';
@@ -17,11 +18,12 @@ import 'package:t_store/utils/helpers/helper_function.dart';
 
 class StoreScreen extends StatelessWidget {
   const StoreScreen({super.key});
-
+    
   @override
   Widget build(BuildContext context) {
+    final list=CategoryController.instance.featuredCategories;
     return DefaultTabController(
-      length: 5,
+      length: list.length,
       child: Scaffold(
         appBar: TAppBar(
           title:  Text('Store',style: Theme.of(context).textTheme.headlineMedium),
@@ -69,16 +71,8 @@ class StoreScreen extends StatelessWidget {
          
                                                       
                                                     
-       bottom:const  TTabbar( 
-         tabs: [
-           
-                Tab(child: Text('Sports')),
-                Tab(child: Text('Furniture')),
-                Tab(child: Text('Electronics')),
-                Tab(child: Text('Clothes')),
-                Tab(child: Text('Cosmetics')),
-           
-         ],
+       bottom:  TTabbar( 
+         tabs: list.map((category) => Tab(child: Text(category.name ),)).toList(),
        )            
             )
       
@@ -86,20 +80,11 @@ class StoreScreen extends StatelessWidget {
           } ,
       
           
-           body: const TabBarView(
+           body:  TabBarView(
 
-            children: [
-                 TCategoryTab() ,
-                 TCategoryTab() ,
-                 TCategoryTab() ,
-                 TCategoryTab() ,
-                 TCategoryTab() ,
-                 
-
-
-                 
-
-            ]
+            children: 
+              list.map((category)=> const TCategoryTab()).toList()
+            
            
            ) 
            ),

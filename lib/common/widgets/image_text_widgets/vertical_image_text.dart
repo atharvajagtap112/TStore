@@ -12,11 +12,14 @@ class TVerticalImageText extends StatelessWidget {
   const TVerticalImageText({
     super.key, 
     required this.image, 
-    required this.title, 
+    required this.title,
+     this.isNetworkImage=false,
+
      this.textColor=TColors.white, 
     this.backgroundColor,
     this.onTap,
-  });
+  }); 
+  final isNetworkImage;
    final String image,title;
    final Color textColor;
    final Color? backgroundColor;
@@ -43,7 +46,8 @@ class TVerticalImageText extends StatelessWidget {
               
             ),
             child: Center(
-              child:  Image(image: AssetImage(image),fit: BoxFit.cover,color:TColors.black))
+              child:  Image(image: isNetworkImage? NetworkImage(image):
+              AssetImage(image),fit: BoxFit.cover,color:TColors.black))
           ),
       
           const SizedBox(height: TSizes.spaceBtwItems/2,),
