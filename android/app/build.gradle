@@ -48,14 +48,3 @@ android {
 flutter {
     source = "../.."
 }
-
-dependencies {
-    // Add Firebase App Check Debug dependency
-    implementation 'com.google.firebase:firebase-appcheck-debug:17.0.0'
-
-    // Other Firebase dependencies
-    implementation 'com.google.firebase:firebase-storage:21.1.0'
-    implementation 'com.google.firebase:firebase-auth:21.1.0'
-    
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-}

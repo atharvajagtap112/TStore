@@ -47,7 +47,7 @@ class TProductCardVertical extends StatelessWidget {
               backgroundColor: dark? TColors.dark:TColors.light,
               child: Stack(
                 children: [
-                   TRoundedImage(imageUrl: product.thumbnail!,applyImageRadius: true  , isNetworkImage: true,) ,
+                   TRoundedImage(imageUrl: product.thumbnail!,applyImageRadius: true  , isNetworkImage: true,  width: double.infinity ,) ,
                  
                  Positioned(
                   top: 12,
@@ -97,7 +97,7 @@ class TProductCardVertical extends StatelessWidget {
                                Flexible(
                                  child: Column(
                                   children: [
-                                    if(product.salePrice!>0 && product.productType==ProductType.single)
+                                    if(product.salePrice>0 && product.productType==ProductType.single)
                                     Padding( // shows the price 
                                 padding: const EdgeInsets.only(left: TSizes.sm),
                                 child:Text( controller.getProductPrice(product) , style: Theme.of(context).textTheme.labelMedium!.apply(decoration:TextDecoration.lineThrough),),

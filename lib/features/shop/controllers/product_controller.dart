@@ -30,11 +30,12 @@ fetchProducts();
   }
     
     String getProductPrice(ProductModel product){
+
       double smallestPrice=double.infinity;
       double largestPrice=0;
       // If no variation exist, return the simple price or sale price 
-      if(ProductType.single.toString()==product.productVariations){
-        return (product.salePrice!>0? product.salePrice:product.price).toString();
+      if(ProductType.single.toString()==product.productType){
+        return (product.salePrice>0? product.salePrice:product.price).toString();
       }
       
       for(var variation in product.productVariations!){
