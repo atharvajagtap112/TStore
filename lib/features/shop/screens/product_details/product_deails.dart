@@ -18,7 +18,7 @@ class ProductDeails extends StatelessWidget {
 final ProductModel product; 
   @override
   Widget build(BuildContext context) {
-    final dark=THelperFunctions.isDarkMode(context);
+    final darkk=THelperFunctions.isDarkMode(context);
     return  Scaffold(
       bottomSheet: const TBottomAddToCart() ,
       

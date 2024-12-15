@@ -38,11 +38,11 @@ class TProductCardVertical extends StatelessWidget {
           color :dark? TColors.darkerGrey:TColors.white,
         ),
 
-        child: Column(
+        child: Column (
           children: [
 
             TRoundedContainer(
-              height: 180,
+              height: 180,   
               padding: const EdgeInsets.all(TSizes.sm),
               backgroundColor: dark? TColors.dark:TColors.light,
               child: Stack(
