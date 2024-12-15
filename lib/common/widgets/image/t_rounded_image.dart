@@ -1,5 +1,6 @@
 
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 
@@ -50,8 +51,7 @@ class TRoundedImage extends StatelessWidget {
          child: ClipRRect( // add borderRadius to image
           borderRadius: applyImageRadius?
           BorderRadius.circular(borderRadius): BorderRadius.zero,
-          child:  Image( image: isNetworkImage?NetworkImage(imageUrl):AssetImage(imageUrl) as ImageProvider,
-          fit: fit,)),
+          child:  isNetworkImage? CachedNetworkImage(imageUrl: imageUrl, fit: fit,) : Image(image: AssetImage(imageUrl), fit: fit,)),
       ),
     );
   }

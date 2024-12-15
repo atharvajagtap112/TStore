@@ -38,23 +38,24 @@ class ProductVariationModel {
   }
 
   /// Create a model instance from a JSON map
-  factory ProductVariationModel.fromJson(Map<String, dynamic> json) {
-    if (json.isEmpty) return ProductVariationModel.empty();
+  factory ProductVariationModel.fromJson(Map<String, dynamic> document) {
+    final data=document;
+    if (data.isEmpty) return ProductVariationModel.empty();
     return ProductVariationModel(
-      id: json['Id'] ?? '',
-      sku: json['SKU'] ?? '',//stock keeping units
-      image: json['Image'] ?? '',
-      description: json['Description'] ?? '',
-      price: double.parse((json[ 'SalePrice']??0.0).toString()), 
+      id: data['Id'] ?? '',
+      sku: data['SKU'] ?? '',//stock keeping units
+      image: data['Image'] ?? '',
+      description: data['Description'] ?? '',
+      price: double.parse((data[ 'Price']??0.0).toString()), 
       //double.parse() takes a string (e.g., "99.99") and converts it back into a double.
 //This is useful if the incoming value is initially in a non-double format, 
 //such as a string from a JSON response that might be represented as "99.99" instead of a numeric 99.99.
 //In this case, toString() is a safety step to make sure the value is in a string format that can be correctly 
 //parsed into a double. However, if json['SalePrice'] is already a number (e.g., 99.99), calling toString() 
 //and then double.parse() is redundant but doesn't cause any issues.
-      salePrice: json['SalePrice'] != null ? json['SalePrice'].toDouble() : 0.0,
-      stock: json['Stock'] ?? 0,
-      attributeValues: Map<String,String>.from(json['AttributeValues'])
+      salePrice: double.parse((data['SalePrice']??0.0).toString() ),
+      stock: data['Stock'] ?? 0,
+      attributeValues: Map<String,String>.from(data['AttributeValues'])
     );
   }
 }

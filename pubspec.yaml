@@ -42,6 +42,7 @@ dependencies:
   image_picker: ^1.1.2
   firebase_storage: ^12.3.7
   cached_network_image: ^3.4.1
+  firebase_app_check: ^0.3.1+7
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -59,12 +60,14 @@ flutter:
  
   #--------------- LOCAL ASSETS ------------------#
   assets:
+    - assets/images/products/ 
     - assets/fonts/
     - assets/icons/
     - assets/images/on_boarding_images/
     - assets/images/animations/
     - assets/logos/
-    - assets/icons/categories/
+    - assets/icons/brands/
+    - assets/icons/categories/  
     - assets/images/products/
     - assets/images/reviews/
     - assets/images/content/user.png

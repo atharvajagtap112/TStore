@@ -8,20 +8,24 @@ import 'package:t_store/common/widgets/image/t_rounded_image.dart';
 import 'package:t_store/common/widgets/text/Product_price_title.dart';
 import 'package:t_store/common/widgets/text/TProductTitleText.dart';
 import 'package:t_store/common/widgets/text/brand_title_with_verified_icon.dart';
+import 'package:t_store/features/shop/controllers/product_controller.dart';
+import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/features/shop/screens/product_details/product_deails.dart';
 import 'package:t_store/utils/constants/colors.dart';
-import 'package:t_store/utils/constants/image_strings.dart';
+import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_function.dart';
 
 class TProductCardVertical extends StatelessWidget {
-  const TProductCardVertical({super.key});
-
+  const TProductCardVertical({super.key , required this.product});
+ final ProductModel product; 
   @override
   Widget build(BuildContext context) {
     final dark=THelperFunctions.isDarkMode(context);
+    final controller=ProductController.instance;
+    final salePercentage=controller.calculateSalePercentage(product.price, product.salePrice);
     return  GestureDetector
-    ( onTap: ()=>Get.to(()=>const ProductDeails()),
+    ( onTap: ()=>Get.to(()=> ProductDeails( product:product ,)),
       child:
       
        Container(
@@ -43,7 +47,7 @@ class TProductCardVertical extends StatelessWidget {
               backgroundColor: dark? TColors.dark:TColors.light,
               child: Stack(
                 children: [
-                  const TRoundedImage(imageUrl: TImages.productImage1,applyImageRadius: true  ,) ,
+                   TRoundedImage(imageUrl: product.thumbnail!,applyImageRadius: true  , isNetworkImage: true,) ,
                  
                  Positioned(
                   top: 12,
@@ -52,7 +56,7 @@ class TProductCardVertical extends StatelessWidget {
                     radius: TSizes.sm,
                     backgroundColor: TColors.secondary.withOpacity(0.8),
                    padding: const EdgeInsets.symmetric(horizontal: TSizes.sm,vertical: TSizes.xs),
-                   child: Text("25%",style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black,),
+                   child: Text(salePercentage!,style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black,),
                    )),
                  ),
 
@@ -68,15 +72,15 @@ class TProductCardVertical extends StatelessWidget {
               
               const SizedBox(height: TSizes.spaceBtwItems/2,),
       
-             const Padding(padding:EdgeInsets.symmetric(horizontal:  TSizes.sm),
+              Padding(padding: const EdgeInsets.symmetric(horizontal:  TSizes.sm),
                      child: SizedBox(
                       width: double.infinity,
                        child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                          children: [
-                           TProductTitleText(text: 'Green Nike Air Shoes',smallSize: true,),
-                           SizedBox(height: TSizes.spaceBtwItems/2,),
-                           TBrandTitlewithVerifiedIcon(title: 'Nike')
+                           TProductTitleText(text: product.title,smallSize: true,),
+                           const SizedBox(height: TSizes.spaceBtwItems/2,),
+                           TBrandTitlewithVerifiedIcon(title: product.brand!.name)
                             ],
                        ),
                      ),
@@ -90,11 +94,25 @@ class TProductCardVertical extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             
                           children: [
-                            //Price
-                              const Padding(
-                                padding: EdgeInsets.only(left: TSizes.sm),
-                                child: TProductPriceText(price: '35.5' ,),
+                               Flexible(
+                                 child: Column(
+                                  children: [
+                                    if(product.salePrice!>0 && product.productType==ProductType.single)
+                                    Padding( // shows the price 
+                                padding: const EdgeInsets.only(left: TSizes.sm),
+                                child:Text( controller.getProductPrice(product) , style: Theme.of(context).textTheme.labelMedium!.apply(decoration:TextDecoration.lineThrough),),
                               ),
+                                      
+                                      //Price shows sale price or main price if exist
+                                     Padding(
+                                padding: const EdgeInsets.only(left: TSizes.sm),
+                                child: TProductPriceText(price: controller.getProductPrice(product) ,),
+                              ),
+                                  ],
+                                 ),
+                               ),
+                          
+                              
       
                             Container(
                               decoration: const BoxDecoration(

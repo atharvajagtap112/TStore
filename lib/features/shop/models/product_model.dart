@@ -9,8 +9,8 @@ class ProductModel {
   String? sku;
   double price;
   String title;
-  DateTime date;
-  double? salePrice;
+  DateTime? date;
+  double salePrice;
   String? thumbnail;
   bool? isFeatured;
   BrandModel? brand;
@@ -27,8 +27,8 @@ class ProductModel {
     this.sku,
     required this.price,
     required this.title,
-    required this.date,
-    this.salePrice,
+     this.date,
+     this.salePrice=0.0,
     this.thumbnail,
     this.isFeatured,
     this.brand,
@@ -40,6 +40,19 @@ class ProductModel {
     this.productVariations,
   });
 
+   static ProductModel get empty => ProductModel(
+    id: '',
+    stock: 0,
+    
+    price: 0.0,
+    title: '',
+    thumbnail: '',
+    productType: ''
+   );
+
+
+
+
   // Convert a ProductModel instance to a JSON map
   Map<String, dynamic> toJson() {
     return {
@@ -48,55 +61,73 @@ class ProductModel {
       'SKU': sku,
       'Price': price,
       'Title': title,
-      'Date': date.toIso8601String(),
+      
       'SalePrice': salePrice,
       'Thumbnail': thumbnail,
       'IsFeatured': isFeatured,
       'Brand': brand?.toJson(),
       'Description': description,
       'CategoryId': categoryId,
-      'Images': images,
+      'Images': images ??[],
       'ProductType': productType,
-      'ProductAttributes':productAttributes!=null ?productAttributes?.map((e) => e.tojson()).toList():[],
-      'ProductVariations':productVariations!=null ?productVariations?.map((e) => e.toJson()).toList():[],
+      'ProductAttributes':productAttributes!=null ?productAttributes!.map((e) => e.tojson()).toList():[],
+      'ProductVariations':productVariations!=null ?productVariations!.map((e) => e.toJson()).toList():[],
     };
   }
 
  
   
   // Create a ProductModel instance from a Firestore DocumentSnapshot
-  factory ProductModel.fromSnapshot(DocumentSnapshot<Map<String,dynamic>> doc) {
-    final data=doc.data()!;
+  factory ProductModel.fromSnapshot(DocumentSnapshot<Map<String,dynamic>> document) {
+      if(document.data()==null) return ProductModel.empty;
+    final data=document.data()!;
    
      return ProductModel(
-      id: doc.id,
+      id: document.id,
       stock: data['Stock']??0,
       sku: data['SKU'],
       price: double.parse((data[ 'Price']??0.0).toString()),
       title: data['Title'],
-      date: DateTime.parse(data['Date']),
+   
       salePrice: double.parse((data[ 'SalePrice']??0.0).toString()),
       thumbnail: data['Thumbnail']??'',
       isFeatured: data['IsFeatured']??false,
-      brand: data['Brand'] != null ? BrandModel.fromJson(data['Brand']) : null,// these will return json in the formate of map
+      brand:  BrandModel.fromJson(data['Brand']) ,// these will return json in the formate of map
       description: data['Description']??'',
       categoryId: data['CategoryId']??'',
       images: data['Images'] !=null? List<String>.from(data['Images']):[],
       productType: data['ProductType']??'',
-      productAttributes: (data['ProductAttributes'] as List<dynamic>?) //(data['ProductAttributes'] will contain the list of json formate 
-       ?.map((e) => ProductAttributeModel.fromJson(e))             // in the Map not in snapshot 
-          .toList(),
-      productVariations: (data['ProductVariations'] as List<dynamic>?)
-          ?.map((e) => ProductVariationModel.fromJson(e))
-          .toList(),
+      productAttributes: (data['ProductAttributes'] as List<dynamic>).map((e) => ProductAttributeModel.fromJson(e)).toList(), 
+       //(data['ProductAttributes'] will contain the list of json formate 
+            // in the Map not in snapshot 
+       
+      productVariations: (data['ProductVariations'] as List<dynamic>).map((e) => ProductVariationModel.fromJson(e)).toList(),
     );
   }
 
     // Create a list of ProductModel instances from a Firestore QuerySnapshot
-  static List<ProductModel> fromQuerySnapshot(
-      QuerySnapshot<Map<String, dynamic>> querySnapshot) {
-    return querySnapshot.docs
-        .map((doc) => ProductModel.fromSnapshot(doc))
-        .toList();
+  factory ProductModel.fromQuerySnapshot ( QueryDocumentSnapshot<Object?> document) {
+       final data =document.data() as Map<String,dynamic>;
+        return ProductModel(
+      id: document.id,
+      stock: data['Stock']??0,
+      sku: data['SKU'],
+      price: double.parse((data[ 'Price']??0.0).toString()),
+      title: data['Title'],
+   
+      salePrice: double.parse((data[ 'SalePrice']??0.0).toString()),
+      thumbnail: data['Thumbnail']??'',
+      isFeatured: data['IsFeatured']??false,
+      brand:  BrandModel.fromJson(data['Brand']) ,// these will return json in the formate of map
+      description: data['Description']??'',
+      categoryId: data['CategoryId']??'',
+      images: data['Images'] !=null? List<String>.from(data['Images']):[],
+      productType: data['ProductType']??'',
+      productAttributes: (data['ProductAttributes'] as List<dynamic>).map((e) => ProductAttributeModel.fromJson(e)).toList(), 
+       //(data['ProductAttributes'] will contain the list of json formate 
+            // in the Map not in snapshot 
+       
+      productVariations: (data['ProductVariations'] as List<dynamic>).map((e) => ProductVariationModel.fromJson(e)).toList(),
+    );
   }
 }

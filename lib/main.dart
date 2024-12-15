@@ -1,3 +1,4 @@
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -20,8 +21,20 @@ await Firebase.initializeApp( //| these will check current platform whether it i
 options: DefaultFirebaseOptions.currentPlatform).then(
   (FirebaseApp value)=>Get.put(AuthenticationRepository())
 );
+ 
+ // Call the function to activate App Check
+   await FirebaseAppCheck.instance.activate(
+    
+    webProvider: ReCaptchaV3Provider('recaptcha-v3-site-key'),
+  
+    androidProvider: AndroidProvider.debug,
+   
+    appleProvider: AppleProvider.appAttest,
+  );
+
+
 runApp(const App());
 
 }
-
+  
 

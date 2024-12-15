@@ -3,6 +3,7 @@ import 'package:t_store/common/widgets/brands/brand_show_case.dart';
 import 'package:t_store/common/widgets/layouts/TGridLayout.dart';
 import 'package:t_store/common/widgets/product/product_cards/product_card_vertical.dart';
 import 'package:t_store/common/widgets/selection_heading.dart';
+import 'package:t_store/features/shop/controllers/product_controller.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
@@ -31,7 +32,7 @@ class TCategoryTab extends StatelessWidget {
       
             TSelectionHeading(title: 'You might like',onPressed: (){},),
           TGridlayout(itemCount: 4, itemBuilder: (_,index)=> 
-         const TProductCardVertical()
+          TProductCardVertical(product: ProductController.instance.featuredProduct[index])
             )
           ],
         ),

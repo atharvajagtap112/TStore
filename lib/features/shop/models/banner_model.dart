@@ -27,7 +27,7 @@ class BannerModel {
     final data=snapshot.data() as  Map<String,dynamic>;
     return BannerModel(
       name: data['name']??"",
-      imageUrl: data['image']??"",
+      imageUrl: data['imageUrl']??"",
      targetScreen: data['targetScreen']??"",
       active: data['active']?? false
       );

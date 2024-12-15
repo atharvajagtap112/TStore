@@ -41,5 +41,5 @@ class NavigationMenu extends StatelessWidget {
 
 class NavigationController {
   final Rx<int>selectedIndex=0.obs;//what is being observed
-   final screens=[const HomeScreen(),const StoreScreen(),const FavouriteScreen(),const SettingsScreen()];
+   final screens=[ HomeScreen(),const StoreScreen(),const FavouriteScreen(),const SettingsScreen()];
 }

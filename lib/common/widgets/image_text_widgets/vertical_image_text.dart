@@ -1,5 +1,6 @@
 
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:t_store/utils/constants/colors.dart';
@@ -27,7 +28,7 @@ class TVerticalImageText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+                 
     return GestureDetector(
       onTap: onTap,
       child: Padding(
@@ -46,8 +47,23 @@ class TVerticalImageText extends StatelessWidget {
               
             ),
             child: Center(
-              child:  Image(image: isNetworkImage? NetworkImage(image):
-              AssetImage(image),fit: BoxFit.cover,color:TColors.black))
+              child:  isNetworkImage
+                    ? CachedNetworkImage(
+                        imageUrl: image,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) =>
+                            const CircularProgressIndicator(
+                          color: TColors.black,
+                          strokeWidth: 2.0,
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error, color: Colors.red),
+                      )
+                    : Image.asset(
+                        image,
+                        fit: BoxFit.cover,
+                        color: TColors.black,
+                      ),)
           ),
       
           const SizedBox(height: TSizes.spaceBtwItems/2,),
