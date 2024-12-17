@@ -10,6 +10,7 @@ import 'package:t_store/features/shop/screens/product_details/widgets/product_de
 import 'package:t_store/features/shop/screens/product_details/widgets/product_meta_data.dart';
 import 'package:t_store/features/shop/screens/product_details/widgets/rating_share_widget.dart';
 import 'package:t_store/features/shop/screens/product_reviews/product_reviews.dart';
+import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_function.dart';
 
@@ -18,7 +19,7 @@ class ProductDeails extends StatelessWidget {
 final ProductModel product; 
   @override
   Widget build(BuildContext context) {
-    final darkk=THelperFunctions.isDarkMode(context);
+    final dark=THelperFunctions.isDarkMode(context);
     return  Scaffold(
       bottomSheet: const TBottomAddToCart() ,
       
@@ -26,7 +27,7 @@ final ProductModel product;
         child: Column(
           children: [
              /// Product Image Silder
-            const TProductImageSlider(),
+             TProductImageSlider(product:product),
 
             // Product Details
              Padding(padding: const EdgeInsets.only(right:TSizes.defaultSpace, left: TSizes.defaultSpace,bottom:TSizes.defaultSpace),
@@ -35,13 +36,15 @@ final ProductModel product;
               children: [
                 //Rating & Share Button
                 const Rating_Share_Widget(),
-                const TProductMetaData(),
+                 TProductMetaData(product: product,),
                 
 
                 // --Attributes
-                const TProductAttribute(),
+                if(product.productType==ProductType.variable.toString())
+                 TProductAttribute(product: product,),
+                   if(product.productType==ProductType.variable.toString())
                 const SizedBox( height: TSizes.spaceBtwSections,),
-
+                
                 // --Checkout Button
                 SizedBox(width: double.infinity,
                   child: ElevatedButton(onPressed: (){}, child:const Text('Checkout'))),

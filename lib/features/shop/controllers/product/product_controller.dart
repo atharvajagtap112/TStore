@@ -56,7 +56,7 @@ fetchProducts();
     String? calculateSalePercentage(double orignalPrice, double?  salePrice){
       if(salePrice ==null|| salePrice<=0) return null;
       if(orignalPrice<=0) return null;
-       double percentage =((orignalPrice-salePrice)/salePrice)* 100; 
+       double percentage =((orignalPrice-salePrice)/orignalPrice)* 100; 
        return percentage.toStringAsFixed(0);//fixed number
     }
 

@@ -21,7 +21,7 @@ class TChoiceChip extends StatelessWidget {
       child: ChoiceChip(
         label: isColor? const SizedBox(): Text(text),
         selected: selected,
-        onSelected: (value) => onSelected,
+        onSelected:  onSelected,
         labelStyle:TextStyle(color:selected?TColors.white:null ),
         //add icon or any widget below the tick
         avatar:isColor? TCircularContainer(width: 50,height: 50,backgroundColors:THelperFunctions.getColor(text)!) :null,

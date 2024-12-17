@@ -5,13 +5,14 @@ import 'package:flutter/material.dart';
 
 
 import 'package:t_store/utils/constants/sizes.dart';
+import 'package:t_store/utils/loaders/t_shimmerLoader.dart';
 
 
 class TRoundedImage extends StatelessWidget {
   const TRoundedImage({
     super.key, 
-    this.width, 
-    this.height, 
+    this.width=double.infinity, 
+    this.height=158, 
     required this.imageUrl, 
      this.applyImageRadius=true,
      this.border, 
@@ -22,7 +23,7 @@ class TRoundedImage extends StatelessWidget {
       this.onPressed, 
        this.borderRadius=TSizes.md,
   });
-  final double? width,height;
+  final double width,height;
   final String imageUrl;
   final bool applyImageRadius;
   final BoxBorder? border;
@@ -51,7 +52,9 @@ class TRoundedImage extends StatelessWidget {
          child: ClipRRect( // add borderRadius to image
           borderRadius: applyImageRadius?
           BorderRadius.circular(borderRadius): BorderRadius.zero,
-          child:  isNetworkImage? CachedNetworkImage(imageUrl: imageUrl, fit: fit,) : Image(image: AssetImage(imageUrl), fit: fit,)),
+          child:  isNetworkImage? 
+          CachedNetworkImage(imageUrl: imageUrl, fit: fit, progressIndicatorBuilder: (context, url, progress) => TShimmerEffect(width: double.infinity, height: height ),) 
+          : Image(image: AssetImage(imageUrl), fit: fit,)),
       ),
     );
   }
