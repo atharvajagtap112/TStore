@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:t_store/bindings/general_bindings.dart';
 import 'package:t_store/features/shop/controllers/product/images_controller.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/features/shop/models/product_variation_model.dart';
@@ -34,7 +32,7 @@ class VariationController extends GetxController{
     Size:"Eu 34"             Size:"Eu 34"
     }                         }
     
-   if there length and value are same we will return true and the entire Product variation data will store selected variation   */
+   if there length and value are same we will return true and the entire Product variation data will store in selected variation   */
      
      
 

@@ -5,7 +5,6 @@ import 'package:t_store/common/widgets/containers/TRoundedContainer.dart';
 import 'package:t_store/common/widgets/selection_heading.dart';
 import 'package:t_store/common/widgets/text/Product_price_title.dart';
 import 'package:t_store/common/widgets/text/TProductTitleText.dart';
-import 'package:t_store/features/shop/controllers/product/product_controller.dart';
 import 'package:t_store/features/shop/controllers/product/variation_controller.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/utils/constants/colors.dart';
@@ -98,8 +97,8 @@ class TProductAttribute extends StatelessWidget {
                 return TChoiceChip(
                   text: attributeValue,
                    selected: isSelected,
-                onSelected: available? 
-                (selected){ 
+                onSelected: available
+                ? (selected){ 
                   if(selected && available ){
                    controller.onAttributeSelected(product, attribute.name??'', attributeValue);  
                    }  }  : null); 

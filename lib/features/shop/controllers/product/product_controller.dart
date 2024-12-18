@@ -26,9 +26,24 @@ fetchProducts();
            isLoading.value=false;
     } catch(e){
       TLoader.errorSnackBar(title: 'ohSnap', message: e.toString());
+      isLoading.value=false;
     }
   }
     
+   Future<List<ProductModel>> fetchAllFeturedProduct() async{
+        try{
+         
+           final product= await productRepository.getAllFeaturedProduct();
+           print("price ${product[0].price}");
+          return product;
+           
+    } catch(e){
+      TLoader.errorSnackBar(title: 'ohSnap', message: e.toString());
+      return [];
+    }
+   }
+
+
     String getProductPrice(ProductModel product){
 
       double smallestPrice=double.infinity;
