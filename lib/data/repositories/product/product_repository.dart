@@ -128,4 +128,50 @@ class ProductRepository extends GetxController{
             }
   }
 
+    Future<List<ProductModel>> getProductsForBrands( { required brandId, int limit=-1}) async{
+      try{
+     final querySnapshot = limit==-1
+     ? await _db.collection('Products').where('Brand.Id', isEqualTo: brandId).get() :  
+                    await _db.collection('Products').where('Brand.Id', isEqualTo: brandId).get();
+          final product= querySnapshot.docs.map((product)=> ProductModel.fromSnapshot(product) ).toList();      
+          return product;   
+                
+       }on FirebaseException catch(e){
+               throw TFirebaseAuthException(e.code).message;
+            }
+           
+            on PlatformException catch(e){
+              throw TPlatformException(e.code);
+            }
+            catch(e){
+              throw 'Something went wrong. please try again';
+            }
+
+}
+
+ Future<List<ProductModel>> getProductsForCategoy( { required categoryId, int limit=-1}) async{
+      try{ 
+     final querySnapshot = limit==-1
+     ? await _db.collection('ProductCategory').where('categoryId', isEqualTo: categoryId).get() :  
+                    await _db.collection('ProductCategory').where('categoryId.Id', isEqualTo: categoryId).get();
+
+          final List<String> productIds= querySnapshot.docs.map((doc)=>doc['productId'] as String).toList();      
+
+         final productQuery=await _db.collection('Products').where(FieldPath.documentId, whereIn: productIds).get();
+       final List<ProductModel> products =  productQuery.docs.map( (doc)=> ProductModel.fromSnapshot(doc)).toList();
+       return products;
+                
+       }on FirebaseException catch(e){
+               throw TFirebaseAuthException(e.code).message;
+            }
+           
+            on PlatformException catch(e){
+              throw TPlatformException(e.code);
+            }
+            catch(e){
+              throw 'Something went wrong. please try again';
+            }
+
+}
+
 }

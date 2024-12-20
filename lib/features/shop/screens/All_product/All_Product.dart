@@ -9,20 +9,21 @@ import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
 class AllProducts extends StatelessWidget {
-   AllProducts({super.key,  this.query , this.productList});
+   AllProducts({super.key,  this.query , this.futureMethodList, this.title});
   final Query? query;
-   Future<List< ProductModel>>? productList;
+  final title;
+   Future<List< ProductModel>>? futureMethodList;
   @override
   Widget build(BuildContext context) {
     final controller=Get.put(Allproductscontroller());
     return  Scaffold(
-      appBar: const TAppBar(title: Text('Popular Product' ),showBackArrow: true,),
+      appBar:  TAppBar(title: Text(title),showBackArrow: true,),
      
       body: SingleChildScrollView(
         child: Padding(padding: const EdgeInsets.all(TSizes.defaultSpace),
         
         child:  FutureBuilder(
-          future: productList?? controller.fetchProductsByQuery(query!) ,
+          future: futureMethodList?? controller.fetchProductsByQuery(query!) ,
           // since we dont have a await to use in build to wait for FutureList we can use future builder
            builder: (context, snapshot) {
                   

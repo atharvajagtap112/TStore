@@ -1,14 +1,18 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_store/common/widgets/AppBar/appbar.dart';
 import 'package:t_store/common/widgets/AppBar/tabbar.dart';
 import 'package:t_store/common/widgets/containers/search_Container.dart';
 import 'package:t_store/common/widgets/layouts/TGridLayout.dart';
+import 'package:t_store/common/widgets/loaders/brands_shimmer.dart';
 import 'package:t_store/common/widgets/product/cart/cart_menu_icon.dart';
 import 'package:t_store/common/widgets/product/product_cards/TBrandCard.dart';
 import 'package:t_store/common/widgets/selection_heading.dart';
 import 'package:t_store/features/personalization/controllers/category_controller.dart';
+import 'package:t_store/features/shop/controllers/brand_controller.dart';
 import 'package:t_store/features/shop/screens/brand/all_brand.dart';
+import 'package:t_store/features/shop/screens/brand/brand_products.dart';
 
 import 'package:t_store/features/shop/screens/store/widgets/categorytab.dart';
 
@@ -21,6 +25,7 @@ class StoreScreen extends StatelessWidget {
     
   @override
   Widget build(BuildContext context) {
+    final controller =Get.put(BrandController());
     final list=CategoryController.instance.featuredCategories;
     return DefaultTabController(
       length: list.length,
@@ -59,12 +64,18 @@ class StoreScreen extends StatelessWidget {
       
                             const SizedBox(height: TSizes.spaceBtwItems/1.5,),
                               
-                                 TGridlayout( itemCount: 4, mainAxisExtent: 80.0,
-                                              itemBuilder: (_,index){
-                                            return  const TBrandCard( ShowBorder: true,);
-                                              }
-        ,
-      ),     
+                                 Obx( (){ 
+                                    if(controller.isLoading.value){ return const TBrandsShimmer();
+                                    }
+                                    if(controller.featuredBrand.isEmpty) {
+                                    return Center(child: Text('No Data Found!' , style: Theme.of(context).textTheme.bodyMedium!.apply( color: Colors.white) ,),);   
+                                    }
+                                   return TGridlayout( itemCount: controller.featuredBrand.length, mainAxisExtent: 80.0,
+                                                itemBuilder: (_,index){
+                                              return   TBrandCard( ShowBorder: true, brand:controller.featuredBrand[index] , 
+                                              onTap: () => Get.to(()=> BrandProducts(brand: controller.featuredBrand[index] )));            
+                                                                               }
+                         ); }),
                           ],
                         ),
                         ),
@@ -83,7 +94,7 @@ class StoreScreen extends StatelessWidget {
            body:  TabBarView(
 
             children: 
-              list.map((category)=> const TCategoryTab()).toList()
+              list.map((category)=>  TCategoryTab(category:category )).toList()
             
            
            ) 

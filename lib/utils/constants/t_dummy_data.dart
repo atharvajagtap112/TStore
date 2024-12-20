@@ -367,7 +367,18 @@ ProductModel(
 
 ];
 
-
+static List<BrandModel> brands=[
+ BrandModel(id: '1', name: 'Nike', image: TImages.nikeLogo, isFeatured: true, productCount: 289),
+ BrandModel(id: '2', name: 'Adidas', image: TImages.adidasLogo, isFeatured: true, productCount: 345),
+ BrandModel(id: '3', name: 'Apple', image: TImages.appleLogo, isFeatured: true, productCount: 344),
+ BrandModel(id: '4', name: 'Herman', image: TImages.hermanMillerLogo, isFeatured: false, productCount: 111),
+ BrandModel(id: '5', name: 'Ikea', image: TImages.ikeaLogo, isFeatured: false, productCount: 450),
+ BrandModel(id: '6', name: 'Jordan', image:TImages.jordanLogo, isFeatured: false, productCount: 239),
+ BrandModel(id: '7', name: 'Samsung', image: TImages.appleLogo, isFeatured: true, productCount: 189),
+ BrandModel(id: '8', name: 'Kenwood', image: TImages.kenwoodLogo, isFeatured: false, productCount: 369),
+ BrandModel(id: '9', name: 'Puma', image: TImages.pumaLogo, isFeatured: false, productCount: 564),
+ BrandModel(id: '10', name: 'Acer', image: TImages.acerlogo, isFeatured: false, productCount: 785),
+];
 
 
 

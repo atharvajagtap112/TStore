@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
 import 'package:t_store/common/widgets/loaders/t_loader.dart';
 import 'package:t_store/data/repositories/categories/categories_repository.dart';
+import 'package:t_store/data/repositories/product/product_repository.dart';
 import 'package:t_store/features/shop/models/category_model.dart';
+import 'package:t_store/features/shop/models/product_model.dart';
 
 class CategoryController extends GetxController {
   static CategoryController get instance=> Get.find();
@@ -32,6 +34,15 @@ class CategoryController extends GetxController {
         isLoading.value=false;
       }
    }
-
+ // Get Category or sub-Category products
+  Future< List<ProductModel>> getCategoryProducts({required String categoryId, int limit=-1}) async{
+    try{
+    final products= await ProductRepository.instance.getProductsForCategoy(categoryId: categoryId, limit: limit);
+    return products;
+    }catch(e) {
+       TLoader.errorSnackBar(title: 'Oh Snap!' , message: e.toString());
+       return [];
+      }
+  }     
 
 }

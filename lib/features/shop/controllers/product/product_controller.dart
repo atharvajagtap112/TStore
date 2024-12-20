@@ -78,4 +78,8 @@ fetchProducts();
     String getProductStock(int stock){
       return stock >0? 'In Stock' :'Out of Stock';
     }
+         
+   
+
+
 }

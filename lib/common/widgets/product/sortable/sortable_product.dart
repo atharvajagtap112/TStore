@@ -4,7 +4,6 @@ import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/widgets/layouts/TGridLayout.dart';
 import 'package:t_store/common/widgets/product/product_cards/product_card_vertical.dart';
 import 'package:t_store/features/shop/controllers/product/AllProductsController.dart';
-import 'package:t_store/features/shop/controllers/product/product_controller.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 

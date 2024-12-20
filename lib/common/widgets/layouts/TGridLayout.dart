@@ -7,7 +7,7 @@ class TGridlayout extends StatelessWidget {
   this.mainAxisExtent=288.0,
    required this.itemBuilder});
   final int itemCount;
-  final mainAxisExtent;
+  final double mainAxisExtent;
   final Widget? Function(BuildContext,int) itemBuilder;
   @override
   Widget build(BuildContext context) {
