@@ -17,7 +17,7 @@ class CategoryBrands extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = BrandController.instance;
     return FutureBuilder(
-      future: controller.getBrandsForCategory(category.id),
+      future: controller.getBrandsForCategory(categoryId:  category.id, limit: 4),
       builder: (context, snapshot) {
         const loader = Column(
           children: [
@@ -48,7 +48,7 @@ class CategoryBrands extends StatelessWidget {
               builder: (context, snapshot) {
                 final widget = CloudHelperFunctions.checkMultiRecordState(
                     snapshot: snapshot, loader: loader);
-                if (widget != null) return widget;
+                //if (widget != null) return widget;
 
                 final products = snapshot.data!;
                 return TBrandShowCase(

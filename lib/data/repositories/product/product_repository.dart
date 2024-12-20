@@ -5,6 +5,8 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:t_store/features/shop/models/BrandCategoryModel.dart';
+import 'package:t_store/features/shop/models/brand_Product.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/exceptions/firebase_auth_exceptions.dart';
@@ -132,7 +134,7 @@ class ProductRepository extends GetxController{
       try{
      final querySnapshot = limit==-1
      ? await _db.collection('Products').where('Brand.Id', isEqualTo: brandId).get() :  
-                    await _db.collection('Products').where('Brand.Id', isEqualTo: brandId).get();
+                    await _db.collection('Products').where('Brand.Id', isEqualTo: brandId).limit(limit).get();
           final product= querySnapshot.docs.map((product)=> ProductModel.fromSnapshot(product) ).toList();      
           return product;   
                 
@@ -149,11 +151,11 @@ class ProductRepository extends GetxController{
 
 }
 
- Future<List<ProductModel>> getProductsForCategoy( { required categoryId, int limit=-1}) async{
+ Future<List<ProductModel>> getProductsForCategory( { required categoryId, int limit=-1}) async{
       try{ 
      final querySnapshot = limit==-1
-     ? await _db.collection('ProductCategory').where('categoryId', isEqualTo: categoryId).get() :  
-                    await _db.collection('ProductCategory').where('categoryId.Id', isEqualTo: categoryId).get();
+     ? await _db.collection('ProductCategories').where('categoryId', isEqualTo: categoryId).get() :  
+                    await _db.collection('ProductCategories').where('categoryId', isEqualTo: categoryId).limit(limit).get();
 
           final List<String> productIds= querySnapshot.docs.map((doc)=>doc['productId'] as String).toList();      
 
@@ -173,5 +175,46 @@ class ProductRepository extends GetxController{
             }
 
 }
+
+
+
+
+void uploadProductCategoryToFirestore(List<ProductCategory> productCategories) async {
+  // Reference to your Firestore collection
+  var collectionRef = FirebaseFirestore.instance.collection('ProductCategories');
+
+  // Iterate over each BrandProduct in the list and upload it to Firestore
+  for (var brandProduct in productCategories) {
+    try {
+      // Adding data to Firestore
+      await collectionRef.add(brandProduct.toJson());
+    } catch (e) {
+      print('Error uploading brand product: $e');
+    }
+  }
+}
+
+
+
+ // Upload the list of BrandCategoryModel to Firestore
+  Future<void> uploadBrandCategories(List<BrandCategoryModel> brandCategoryList) async {
+    try {
+      // You may want to use a batch write for efficient uploads
+     final collectionRef = FirebaseFirestore.instance.collection('Categories');
+
+      // Iterate over the BrandCategory list
+      for (var brandCategory in brandCategoryList) {
+        // Create a document reference where the ID is the brandId + productId (for example)
+       await collectionRef.add(brandCategory.toJson());
+
+      
+      }
+
+     
+      print("Brand categories uploaded successfully!");
+    } catch (e) {
+      print("Error uploading brand categories: $e");
+    }
+  }
 
 }

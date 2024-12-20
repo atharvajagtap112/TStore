@@ -1,9 +1,14 @@
+import 'package:t_store/features/shop/models/BrandCategoryModel.dart';
 import 'package:t_store/features/shop/models/banner_model.dart';
+import 'package:t_store/features/shop/models/brand_Product.dart';
+import 'package:t_store/features/shop/models/brand_Product.dart';
+import 'package:t_store/features/shop/models/brand_Product.dart';
 import 'package:t_store/features/shop/models/brand_model.dart';
 import 'package:t_store/features/shop/models/category_model.dart';
 import 'package:t_store/features/shop/models/product_attribute_model.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/features/shop/models/product_variation_model.dart';
+import 'package:t_store/features/shop/screens/brand/brand_products.dart';
 import 'package:t_store/routes/routes.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 
@@ -379,6 +384,129 @@ static List<BrandModel> brands=[
  BrandModel(id: '9', name: 'Puma', image: TImages.pumaLogo, isFeatured: false, productCount: 564),
  BrandModel(id: '10', name: 'Acer', image: TImages.acerlogo, isFeatured: false, productCount: 785),
 ];
+
+
+static List<BrandCategoryModel> BrandCategory = [
+  // Sports (Category ID: "1")
+  BrandCategoryModel(brandId: "1", categoryId: "1"), // Nike -> Sports
+  BrandCategoryModel(brandId: "2", categoryId: "1"), // Adidas -> Sports
+  BrandCategoryModel(brandId: "6", categoryId: "1"), // Jordan -> Sports
+  BrandCategoryModel(brandId: "9", categoryId: "1"), // Puma -> Sports
+
+  // Furniture (Category ID: "5")
+  BrandCategoryModel(brandId: "4", categoryId: "5"), // Herman -> Furniture
+  BrandCategoryModel(brandId: "5", categoryId: "5"), // Ikea -> Furniture
+
+  // Electronics (Category ID: "2")
+  BrandCategoryModel(brandId: "3", categoryId: "2"), // Apple -> Electronics
+  BrandCategoryModel(brandId: "7", categoryId: "2"), // Samsung -> Electronics
+  BrandCategoryModel(brandId: "8", categoryId: "2"), // Kenwood -> Electronics
+
+  // Clothes (Category ID: "3")
+  BrandCategoryModel(brandId: "1", categoryId: "3"), // Nike -> Clothes
+  BrandCategoryModel(brandId: "2", categoryId: "3"), // Adidas -> Clothes
+  BrandCategoryModel(brandId: "6", categoryId: "3"), // Jordan -> Clothes
+
+  // Animals (Category ID: "4")
+  BrandCategoryModel(brandId: "1", categoryId: "4"), // Nike -> Animals
+  BrandCategoryModel(brandId: "2", categoryId: "4"), // Adidas -> Animals
+  BrandCategoryModel(brandId: "6", categoryId: "4"), // Jordan -> Animals
+
+  // Shoes (Category ID: "6")
+  BrandCategoryModel(brandId: "1", categoryId: "6"), // Nike -> Shoes
+  BrandCategoryModel(brandId: "2", categoryId: "6"), // Adidas -> Shoes
+  BrandCategoryModel(brandId: "6", categoryId: "6"), // Jordan -> Shoes
+  BrandCategoryModel(brandId: "9", categoryId: "6"), // Puma -> Shoes
+
+  // Cosmetics (Category ID: "7")
+  BrandCategoryModel(brandId: "1", categoryId: "7"), // Nike -> Cosmetics
+  BrandCategoryModel(brandId: "2", categoryId: "7"), // Adidas -> Cosmetics
+  BrandCategoryModel(brandId: "6", categoryId: "7"), // Jordan -> Cosmetics
+
+  // Jewelry (Category ID: "14")
+  BrandCategoryModel(brandId: "1", categoryId: "14"), // Nike -> Jewelry
+  BrandCategoryModel(brandId: "2", categoryId: "14"), // Adidas -> Jewelry
+  BrandCategoryModel(brandId: "6", categoryId: "14"), // Jordan -> Jewelry
+
+  // Subcategories
+
+  // Sport Shoes (Subcategory ID: "8")
+  BrandCategoryModel(brandId: "1", categoryId: "8"), // Nike -> Sport Shoes
+  BrandCategoryModel(brandId: "2", categoryId: "8"), // Adidas -> Sport Shoes
+  BrandCategoryModel(brandId: "6", categoryId: "8"), // Jordan -> Sport Shoes
+  BrandCategoryModel(brandId: "9", categoryId: "8"), // Puma -> Sport Shoes
+
+  // Track Suits (Subcategory ID: "9")
+  BrandCategoryModel(brandId: "1", categoryId: "9"), // Nike -> Track Suits
+  BrandCategoryModel(brandId: "2", categoryId: "9"), // Adidas -> Track Suits
+  BrandCategoryModel(brandId: "6", categoryId: "9"), // Jordan -> Track Suits
+  BrandCategoryModel(brandId: "9", categoryId: "9"), // Puma -> Track Suits
+
+  // Sports Equipments (Subcategory ID: "10")
+  BrandCategoryModel(brandId: "1", categoryId: "10"), // Nike -> Sports Equipments
+  BrandCategoryModel(brandId: "2", categoryId: "10"), // Adidas -> Sports Equipments
+  BrandCategoryModel(brandId: "6", categoryId: "10"), // Jordan -> Sports Equipments
+  BrandCategoryModel(brandId: "9", categoryId: "10"), // Puma -> Sports Equipments
+
+  // Bedroom Furniture (Subcategory ID: "11")
+  BrandCategoryModel(brandId: "4", categoryId: "11"), // Herman -> Bedroom Furniture
+  BrandCategoryModel(brandId: "5", categoryId: "11"), // Ikea -> Bedroom Furniture
+
+  // Kitchen Furniture (Subcategory ID: "12")
+  BrandCategoryModel(brandId: "4", categoryId: "12"), // Herman -> Kitchen Furniture
+  BrandCategoryModel(brandId: "5", categoryId: "12"), // Ikea -> Kitchen Furniture
+
+  // Office Furniture (Subcategory ID: "13")
+  BrandCategoryModel(brandId: "4", categoryId: "13"), // Herman -> Office Furniture
+  BrandCategoryModel(brandId: "5", categoryId: "13"), // Ikea -> Office Furniture
+
+  // Laptop (Subcategory ID: "14")
+  BrandCategoryModel(brandId: "3", categoryId: "14"), // Apple -> Laptop
+  BrandCategoryModel(brandId: "7", categoryId: "14"), // Samsung -> Laptop
+  BrandCategoryModel(brandId: "8", categoryId: "14"), // Kenwood -> Laptop
+
+  // Mobile (Subcategory ID: "15")
+  BrandCategoryModel(brandId: "3", categoryId: "15"), // Apple -> Mobile
+  BrandCategoryModel(brandId: "7", categoryId: "15"), // Samsung -> Mobile
+  BrandCategoryModel(brandId: "8", categoryId: "15"), // Kenwood -> Mobile
+
+  // Shirts (Subcategory ID: "16")
+  BrandCategoryModel(brandId: "1", categoryId: "16"), // Nike -> Shirts
+  BrandCategoryModel(brandId: "2", categoryId: "16"), // Adidas -> Shirts
+  BrandCategoryModel(brandId: "6", categoryId: "16"), // Jordan -> Shirts
+];
+
+
+ 
+static final List<ProductCategory> productCategory = [
+  // Main categories
+  ProductCategory(categoryId: '1', productId: '001'), // Green Nike sports shoe -> Sports
+  ProductCategory(categoryId: '16', productId: '002'), // Blue T-shirt for all ages -> Shirts (Clothes)
+  ProductCategory(categoryId: '16', productId: '003'), // Leather brown Jacket -> Shirts (Clothes)
+  ProductCategory(categoryId: '16', productId: '004'), // 4 Color collar t-shirt dry fit -> Shirts (Clothes)
+  ProductCategory(categoryId: '8', productId: '005'), // Nike Air Jordan Shoes -> Sport Shoes (Sports)
+  ProductCategory(categoryId: '2', productId: '006'), // SAMSUNG Galaxy S9 -> Electronics
+  ProductCategory(categoryId: '4', productId: '007'), // TOMI Dog food -> Animals
+  ProductCategory(categoryId: '8', productId: '009'), // Nike Air Jordon 19 Blue -> Sport Shoes (Sports)
+
+  // Subcategories
+  ProductCategory(categoryId: '8', productId: '001'), // Green Nike sports shoe -> Sport Shoes (Sports)
+  ProductCategory(categoryId: '9', productId: '001'), // Green Nike sports shoe -> Track suits (Sports)
+  ProductCategory(categoryId: '10', productId: '001'), // Green Nike sports shoe -> Sports Equipments (Sports)
+
+  // Furniture subcategories
+  ProductCategory(categoryId: '11', productId: '002'), // Blue T-shirt for all ages -> Bedroom furniture (Furniture)
+  ProductCategory(categoryId: '12', productId: '002'), // Blue T-shirt for all ages -> Kitchen furniture (Furniture)
+  ProductCategory(categoryId: '13', productId: '002'), // Blue T-shirt for all ages -> Office furniture (Furniture)
+
+  // Electronics subcategories
+  ProductCategory(categoryId: '14', productId: '006'), // SAMSUNG Galaxy S9 -> Laptop (Electronics)
+  ProductCategory(categoryId: '15', productId: '006'), // SAMSUNG Galaxy S9 -> Mobile (Electronics)
+
+  // Clothes subcategory
+  ProductCategory(categoryId: '16', productId: '004'), // 4 Color collar t-shirt dry fit -> Shirts (Clothes)
+];
+
 
 
 

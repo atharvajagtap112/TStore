@@ -61,9 +61,9 @@ Future<void> uploadDummyData(List<BrandModel> brands) async {
 
 
 //-------Get Brands For Category
-Future<List<BrandModel>> getBrandsForPerticularCategoryId(String categoryId ) async{
+Future<List<BrandModel>> getBrandsForPerticularCategoryId({required String categoryId , int limit=-1}) async{
   try{ // get the query of brands and category id bridge
-    QuerySnapshot brandsCategoryQuery=await _db.collection('BrandCategory').where('categoryId', isEqualTo: categoryId).get();
+    QuerySnapshot brandsCategoryQuery=await _db.collection('brandCategories').where('categoryId', isEqualTo: categoryId).limit(limit).get();
        
        // these will contains the list of brands ids
       final List<String> brandsId= brandsCategoryQuery.docs.map( (doc)=> doc['brandId'] as String ).toList();

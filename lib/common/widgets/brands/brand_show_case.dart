@@ -56,7 +56,12 @@ Widget brandTopProductImageWidget(String image,context){
                        margin: const EdgeInsets.only(right: TSizes.sm),
                        padding: const EdgeInsets.all(TSizes.md),
                        backgroundColor: THelperFunctions.isDarkMode(context)? TColors.darkGrey:TColors.light,
-                       child: CachedNetworkImage(imageUrl: image , progressIndicatorBuilder: (context, url, progress) => const TShimmerEffect(width: 50, height: 50),)),
+                       child: CachedNetworkImage(
+                        fit: BoxFit.contain,
+                        imageUrl: image ,
+                       progressIndicatorBuilder: (context, url, progress) => const TShimmerEffect(width: 100, height: 100),
+                       errorWidget: (context, url, error) => const Icon(Icons.error),
+                       )),
                                           
                    );
                  

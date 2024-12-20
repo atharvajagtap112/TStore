@@ -18,6 +18,7 @@ class UploadData extends StatelessWidget {
     final controller=Get.put(CategoriesRepository());
     final bannerController2=BannersRepositories.instance;
     final brandRepository=Get.put(BrandRepository());
+    final productRepo=Get.put(ProductRepository());
     return Scaffold(
       appBar:const  TAppBar(  title: Text('Upload Data'),showBackArrow: true,),
       body: Padding(
@@ -28,7 +29,9 @@ class UploadData extends StatelessWidget {
              TSettingMenuTile(icon: Iconsax.grid_1, title: 'Upload Categories' , onTap: ()=>controller.uploadDummyData(TDummyData.categories)),
               TSettingMenuTile(icon: Iconsax.grid_1, title: 'Upload Banners' , onTap: ()=>bannerController2.uploadDummyData(TDummyData.banners)),
               TSettingMenuTile(icon: Iconsax.grid_1, title: 'Upload Products' , onTap: ()=>ProductRepository.instance.uploadDummyData(TDummyData.products)),  
-              TSettingMenuTile(icon: Iconsax.grid_1, title: 'Upload Brands' , onTap: ()=>brandRepository.uploadDummyData(TDummyData.brands)),        
+              TSettingMenuTile(icon: Iconsax.grid_1, title: 'Upload Brands' , onTap: ()=>brandRepository.uploadDummyData(TDummyData.brands)),    
+                TSettingMenuTile(icon: Iconsax.grid_1, title: 'Upload BrandCategory' , onTap: ()=>productRepo.uploadBrandCategories(TDummyData.BrandCategory)),        
+                  TSettingMenuTile(icon: Iconsax.grid_1, title: 'Upload ProductCategory' , onTap: ()=>ProductRepository.instance.uploadProductCategoryToFirestore(TDummyData.productCategory)),            
                      ],
         ),
       ),

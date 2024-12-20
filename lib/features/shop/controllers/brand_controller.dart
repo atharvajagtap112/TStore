@@ -35,10 +35,10 @@ class BrandController extends GetxController {
 
   }  
 
-  Future<List<BrandModel>> getBrandsForCategory( String categoryId ) async{
+  Future<List<BrandModel>> getBrandsForCategory( { required String categoryId , int limit=-1} ) async{
        try{
            
-          final brands=brandRepository.getBrandsForPerticularCategoryId(categoryId);
+          final brands=brandRepository.getBrandsForPerticularCategoryId(categoryId: categoryId, limit: limit );
           return brands;
        }
         catch(e){
