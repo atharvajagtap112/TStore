@@ -66,7 +66,7 @@ class HomeScreen extends StatelessWidget {
                     const TPromoSlider(),
                     const SizedBox(height: TSizes.spaceBtwSections,),
 
-                    TSelectionHeading(title: 'Popular Product', onPressed:()=>Get.to(()=> AllProducts( futureMethodList: controller.fetchAllFeturedProduct(),)) ), 
+                    TSelectionHeading(title: 'Popular Product', onPressed:()=>Get.to(()=> AllProducts( futureMethodList: controller.fetchAllFeturedProduct(), title:'All Products' ,)) ), 
                     
                     //Popular Products 
 

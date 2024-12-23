@@ -33,12 +33,10 @@ final CategoryModel category;
           children: [
            CategoryBrands(category:category ,),
 
-
-            
-               FutureBuilder(
+                FutureBuilder(
                  future: controller.getCategoryProducts(categoryId: category.id, limit: -1),
                  builder: (context, snapshot) {
-                    final loader=  TVerticalProductShimmer();
+                    const loader=  TVerticalProductShimmer();
                    final widget= CloudHelperFunctions.checkMultiRecordState(snapshot: snapshot, loader: loader);
                    if(widget!=null) return widget;
                    final product=snapshot.data!;

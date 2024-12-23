@@ -4,7 +4,6 @@ import 'package:t_store/common/widgets/AppBar/appbar.dart';
 import 'package:t_store/common/widgets/loaders/TVerticalProductShimmer%20.dart';
 import 'package:t_store/common/widgets/product/product_cards/TBrandCard.dart';
 import 'package:t_store/common/widgets/product/sortable/sortable_product.dart';
-import 'package:t_store/data/repositories/brands/brands_repository.dart';
 import 'package:t_store/features/shop/controllers/brand_controller.dart';
 import 'package:t_store/features/shop/models/brand_model.dart';
 import 'package:t_store/utils/constants/sizes.dart';

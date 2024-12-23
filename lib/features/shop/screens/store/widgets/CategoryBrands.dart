@@ -4,7 +4,6 @@ import 'package:t_store/common/widgets/loaders/boxes_shimmer.dart';
 import 'package:t_store/common/widgets/loaders/list_tile_shimmer.dart';
 import 'package:t_store/features/shop/controllers/brand_controller.dart';
 import 'package:t_store/features/shop/models/category_model.dart';
-import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/cloud_helper_function.dart';
 
@@ -14,7 +13,7 @@ class CategoryBrands extends StatelessWidget {
   final CategoryModel category;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {          
     final controller = BrandController.instance;
     return FutureBuilder(
       future: controller.getBrandsForCategory(categoryId:  category.id, limit: 4),
@@ -32,9 +31,9 @@ class CategoryBrands extends StatelessWidget {
           ],
         );
 
-        final Widget =
+        final widget =
             CloudHelperFunctions.checkMultiRecordState(snapshot: snapshot, loader: loader);
-        if (Widget != null) return Widget;
+        if (widget != null) return widget;
 
         final brands = snapshot.data!;
         return ListView.builder(
@@ -48,7 +47,7 @@ class CategoryBrands extends StatelessWidget {
               builder: (context, snapshot) {
                 final widget = CloudHelperFunctions.checkMultiRecordState(
                     snapshot: snapshot, loader: loader);
-                //if (widget != null) return widget;
+                if (widget != null) return widget;
 
                 final products = snapshot.data!;
                 return TBrandShowCase(

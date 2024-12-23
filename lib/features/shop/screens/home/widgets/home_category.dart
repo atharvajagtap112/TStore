@@ -1,4 +1,5 @@
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,7 +31,7 @@ class THomeCategory extends StatelessWidget {
        itemBuilder: (_, index) {
         final category=controller.featuredCategories[index];
          return //items 
-            TVerticalImageText(image:category.image ,title: category.name,onTap: ()=> Get.to(()=> const SubCategoriesScreen()), isNetworkImage: true,);
+            TVerticalImageText(image:category.image ,title: category.name,onTap: ()=> Get.to(()=>  SubCategoriesScreen( category:category,)), isNetworkImage: true,);
        },
       ),
     );});

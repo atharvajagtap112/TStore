@@ -8,40 +8,71 @@ import 'package:t_store/features/shop/controllers/product/AllProductsController.
 import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:t_store/common/widgets/AppBar/appbar.dart';
+
+import 'package:t_store/common/widgets/product/sortable/sortable_product.dart';
+import 'package:t_store/features/shop/controllers/product/AllProductsController.dart';
+import 'package:t_store/features/shop/models/product_model.dart';
+import 'package:t_store/utils/constants/sizes.dart';
+
 class AllProducts extends StatelessWidget {
-   AllProducts({super.key,  this.query , this.futureMethodList, this.title});
+  AllProducts({
+    super.key,
+    this.query,
+    this.futureMethodList,
+    required this.title,
+  });
+
   final Query? query;
-  final title;
-   Future<List< ProductModel>>? futureMethodList;
+  final Future<List<ProductModel>>? futureMethodList;
+  final String title;
+
   @override
   Widget build(BuildContext context) {
-    final controller=Get.put(Allproductscontroller());
-    return  Scaffold(
-      appBar:  TAppBar(title: Text(title),showBackArrow: true,),
-     
+    final controller = Get.put(Allproductscontroller());
+
+    return Scaffold(
+      appBar: TAppBar(
+        title: Text(title),
+        showBackArrow: true,
+      ),
       body: SingleChildScrollView(
-        child: Padding(padding: const EdgeInsets.all(TSizes.defaultSpace),
+        child: Padding(
+          padding: const EdgeInsets.all(TSizes.defaultSpace),
+          child: FutureBuilder<List<ProductModel>>(
+            future: futureMethodList ?? 
+                    (query != null 
+                      ? controller.fetchProductsByQuery(query!)
+                      : Future.value([])), // Handle null query
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const TVerticalProductShimmer();
+              }
         
-        child:  FutureBuilder(
-          future: futureMethodList?? controller.fetchProductsByQuery(query!) ,
-          // since we dont have a await to use in build to wait for FutureList we can use future builder
-           builder: (context, snapshot) {
-                  
-                  if(snapshot.connectionState==ConnectionState.waiting) {
-                    return const TVerticalProductShimmer();
-                  }
-                  if(!snapshot.hasData || snapshot.data==null || snapshot.data!.isEmpty) {
-                    return  const Center( child: Text('No Data Found'),);
-                  }
-
-                  if(snapshot.hasError) return const Center( child: Text('Something went wrong'),);
-                    
-                  return  TSortableProducts(product: snapshot.data!, );
-
-           },)  
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text('Error: ${snapshot.error}'),
+                );
+              }
+        
+              if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                return const Center(
+                  child: Text('No products found'),
+                );
+              }
+        
+              final products = snapshot.data!;
+        
+              return TSortableProducts(
+                product: products,
+              );
+            },
+          ),
         ),
       ),
     );
   }
 }
-

@@ -29,6 +29,27 @@ class CategoriesRepository extends GetxController {
             }
   }   
 
+
+
+
+
+  Future<List<CategoryModel>> getSubCategories(String id) async{
+   try{ // The data is in form of list of document snapshot we can use map to map every element and convert from Document snapshort to model 
+    //which will be the list of CategoriesModel
+     final snapshot =await _db.collection('Categories'). where('ParentId', isEqualTo: id).get(); //List
+        
+     final list=snapshot.docs.map( (document)=>   CategoryModel.fromSnapshot(document)).toList();
+     print(list.length);
+     return list;
+   } on FirebaseException catch(e){
+    throw TFirebaseAuthException(e.code).message;
+   } on FormatException catch(_){
+    throw const TFormatException();
+   } catch(e){
+    throw 'Something went wrong. please try again';
+            }
+  }   
+
    // Upload Categories to the Cloud Firebase
 Future<void> uploadDummyData(List<CategoryModel> categories) async {
   // Upload all the Categories along with their Images

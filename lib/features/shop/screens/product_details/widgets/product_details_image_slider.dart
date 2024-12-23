@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/widgets/AppBar/appbar.dart';
 import 'package:t_store/common/widgets/curved_edges/curved_edges_widget.dart';
 import 'package:t_store/common/widgets/image/t_rounded_image.dart';
+import 'package:t_store/common/widgets/product/favourite_icon.dart/favourite_icon.dart';
 import 'package:t_store/features/shop/controllers/product/images_controller.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/utils/constants/colors.dart';
@@ -78,8 +78,7 @@ final ProductModel product;
           ),
     
           //Appbar Icons
-          TAppBar( showBackArrow: true, action: [IconButton(onPressed: (){}, 
-          icon:const Icon(Iconsax.heart5 ,color:Colors.red,))],)
+          TAppBar( showBackArrow: true, action: [FavouriteIcon(productId: product.id)],)
        ]
       ),
     )
