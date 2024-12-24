@@ -59,6 +59,9 @@ GlobalKey<FormState> addressFormKey=GlobalKey<FormState>();
        
        //Update Selected Address Status
       address.id=id;
+        if(selectedAddress.value.id.isNotEmpty){
+         await addressRepository.updateSelectedAddress(selectedAddress.value.id, false);
+       }
       selectedAddress.value=address;
      
      // Remove Loader
@@ -79,6 +82,7 @@ GlobalKey<FormState> addressFormKey=GlobalKey<FormState>();
       Navigator.of(Get.context!).pop();
 
           } catch(e){
+           TFUILScreenLoader.stopLoading();
             TLoader.errorSnackBar(title: 'Address not found' , message: e.toString());
           }
 
@@ -106,7 +110,7 @@ GlobalKey<FormState> addressFormKey=GlobalKey<FormState>();
             onWillPop: () async {return false;},
             barrierDismissible: false,
             backgroundColor: Colors.transparent,
-            content: const CircularProgressIndicator()
+            content: const CircularProgressIndicator( )
 
            ); 
        
@@ -119,6 +123,7 @@ GlobalKey<FormState> addressFormKey=GlobalKey<FormState>();
             newSelectedAddress.selectedAddress=true;
             selectedAddress.value=newSelectedAddress;
          await addressRepository.updateSelectedAddress(newSelectedAddress.id, true);  
+         Get.back();
           
           } catch(e){
       TLoader.errorSnackBar(title: 'OhSnap', message: e.toString());

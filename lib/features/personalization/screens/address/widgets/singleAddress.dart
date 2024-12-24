@@ -15,56 +15,60 @@ class TSingleAddress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller=AddressController.instance;
-    final bool isSelected=controller.selectedAddress.value==Address;
+  
     final dark=THelperFunctions.isDarkMode(context);
     return 
-  InkWell(
-        onTap: ()=> onTap,
-        child: TRoundedContainer(
-          width: double.infinity,
-          showBorder: true,
-          padding:const EdgeInsets.all(TSizes.md),
-          backgroundColor: isSelected? TColors.primary.withOpacity(0.5) : Colors.transparent,
-          borderColor: isSelected? Colors.transparent: 
-          dark
-          ? TColors.darkerGrey 
-          :TColors.grey,
-          margin:const EdgeInsets.only(bottom: TSizes.spaceBtwItems),
-          child: Stack(
-            children: [
-              Positioned(
-                top: 0,
-                right: 4,
-        
-                child: Icon( isSelected? Iconsax.tick_circle : null ,
-                color: isSelected? 
-                dark
-                ? TColors.light 
-                : TColors.dark 
-                :null,
-                
-                ),),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(Address.name,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                   const SizedBox( height: TSizes.sm/2, ),
-                    Text(Address.formattedPhoneNo,maxLines: 1,overflow: TextOverflow.ellipsis,),
-                   const SizedBox( height: TSizes.sm/2, ),
-                    Text( Address.toString() ,softWrap: true,)
-                   
+  Obx(
+    (){  
+        final bool isSelected=controller.selectedAddress.value.id==Address.id;
+      return InkWell(
+          onTap: onTap,
+          child: TRoundedContainer(
+            width: double.infinity,
+            showBorder: true,
+            padding:const EdgeInsets.all(TSizes.md),
+            backgroundColor: isSelected? TColors.primary.withOpacity(0.5) : Colors.transparent,
+            borderColor: isSelected? Colors.transparent: 
+            dark
+            ? TColors.darkerGrey 
+            :TColors.grey,
+            margin:const EdgeInsets.only(bottom: TSizes.spaceBtwItems),
+            child: Stack(
+              children: [
+                Positioned(
+                  top: 0,
+                  right: 4,
+          
+                  child: Icon( isSelected? Iconsax.tick_circle : null ,
+                  color: isSelected? 
+                  dark
+                  ? TColors.light 
+                  : TColors.dark 
+                  :null,
                   
-                  ],
-                )
-        
-            ],
+                  ),),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(Address.name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                     const SizedBox( height: TSizes.sm/2, ),
+                      Text(Address.formattedPhoneNo,maxLines: 1,overflow: TextOverflow.ellipsis,),
+                     const SizedBox( height: TSizes.sm/2, ),
+                      Text( Address.toString() ,softWrap: true,)
+                     
+                    
+                    ],
+                  )
+          
+              ],
+            ),
           ),
-        ),
-      
-    );
+        
+            ); 
+  } ); 
   }
 }
