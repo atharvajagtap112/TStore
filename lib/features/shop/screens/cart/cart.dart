@@ -3,9 +3,13 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/widgets/AppBar/appbar.dart';
 import 'package:t_store/common/widgets/containers/TCircular_icon.dart';
+import 'package:t_store/common/widgets/loaders/animation_loader.dart';
+import 'package:t_store/features/shop/controllers/product/cart_controller.dart';
 import 'package:t_store/features/shop/screens/cart/widgets/cart_items.dart';
 import 'package:t_store/features/shop/screens/checkout/checkout.dart';
+import 'package:t_store/navigationMenu.dart';
 import 'package:t_store/utils/constants/colors.dart';
+import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_function.dart';
 
@@ -14,53 +18,39 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   final controller=CartController.instance;
     return Scaffold(
       appBar: TAppBar( showBackArrow: true,title: Text('Cart',style: Theme.of(context).textTheme.headlineSmall,), ),
-      body: const SingleChildScrollView(
-        child: Padding(padding: EdgeInsets.all(TSizes.defaultSpace),
-        child:TCartItems(),
-        ),
-      ),
+      body: Obx( (){ 
+          final emptyWidget=TAnimationLoaderWidget(
+            text:"Whoops! Cart is EMPTY", 
+            animation: TImages.cartAnimation, 
+            actionText: 'Let\'s fill it',
+           showAction: true,
+           onActionPressed: ()=> Get.off(()=>const NavigationMenu()),  
+            );
+           
+          
+           if(controller.cartItems.isEmpty){
+            return emptyWidget;
+           } 
+           
+          return const SingleChildScrollView(
+            child:Padding(padding: EdgeInsets.all(TSizes.defaultSpace) ,
+            child:TCartItems(),
+            )
+          );
+          }),
+       
+       
+        
+   
      bottomNavigationBar: Padding(padding: const EdgeInsets.all(TSizes.defaultSpace),
-     child: ElevatedButton(onPressed: ()=>Get.to(()=>const CheckoutScreen()), child: const Text('Checkout \$256.0')),
-     ), 
-    );
-  }
+     child: ElevatedButton(onPressed: ()=>Get.to(()=> CheckoutScreen()), child:  Text('Checkout ${controller.totalCartPrice}'))
+     
+     )
+ );}
 }
 
 
-
-class TProductQuantityWithAddRemoveButtons extends StatelessWidget {
-  const TProductQuantityWithAddRemoveButtons({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        TCircularIcon(
-          icon:Iconsax.minus,
-          width: 32,
-          height: 32,
-          size: TSizes.md,
-          color: THelperFunctions.isDarkMode(context)? TColors.white:TColors.black,
-          backgroundColor: THelperFunctions.isDarkMode(context)? TColors.darkerGrey:TColors.light,
-           ),
-          const SizedBox(width: TSizes.spaceBtwItems,),
-       Text('2', style: Theme.of(context).textTheme.titleSmall,),
-       const SizedBox(width: TSizes.spaceBtwItems,),
-      TCircularIcon(
-      icon:Iconsax.add,
-      width: 32,
-      height: 32,
-      size: TSizes.md,
-      color: THelperFunctions.isDarkMode(context)? TColors.white:TColors.black,
-      backgroundColor: TColors.primary,
-       ), 
-      ],
-    );
-  }
-}
 

@@ -8,18 +8,10 @@ import 'package:t_store/features/shop/controllers/product/AllProductsController.
 import 'package:t_store/features/shop/models/product_model.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:t_store/common/widgets/AppBar/appbar.dart';
 
-import 'package:t_store/common/widgets/product/sortable/sortable_product.dart';
-import 'package:t_store/features/shop/controllers/product/AllProductsController.dart';
-import 'package:t_store/features/shop/models/product_model.dart';
-import 'package:t_store/utils/constants/sizes.dart';
 
 class AllProducts extends StatelessWidget {
-  AllProducts({
+  const AllProducts({
     super.key,
     this.query,
     this.futureMethodList,

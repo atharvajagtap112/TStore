@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:t_store/common/widgets/brands/brand_show_case.dart';
 import 'package:t_store/common/widgets/layouts/TGridLayout.dart';
 import 'package:t_store/common/widgets/loaders/TVerticalProductShimmer%20.dart';
 import 'package:t_store/common/widgets/product/product_cards/product_card_vertical.dart';
 import 'package:t_store/common/widgets/selection_heading.dart';
 import 'package:t_store/features/personalization/controllers/category_controller.dart';
-import 'package:t_store/features/shop/controllers/product/product_controller.dart';
 import 'package:t_store/features/shop/models/category_model.dart';
 import 'package:t_store/features/shop/screens/All_product/All_Product.dart';
 import 'package:t_store/features/shop/screens/store/widgets/CategoryBrands.dart';
-import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/cloud_helper_function.dart';
 

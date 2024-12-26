@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:t_store/utils/helpers/helper_function.dart';
-import 'package:flutter/material.dart';
-import 'package:t_store/common/widgets/layouts/TGridLayout.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/loaders/t_shimmerLoader.dart';
 class THorizontalProductShimmer extends StatelessWidget {
@@ -61,18 +59,18 @@ class THorizontalProductShimmer extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Column(
+                        const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             TShimmerEffect(width: 80, height: 12),
                             SizedBox(height: TSizes.xs),
                             TShimmerEffect(width: 100, height: 14),
                           ],
                         ),
                         Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Colors.black,
-                            borderRadius: const BorderRadius.only(
+                            borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(TSizes.cardRadiusMd),
                               bottomRight: Radius.circular(TSizes.productImageRadius),
                             ),

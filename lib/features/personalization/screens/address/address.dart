@@ -25,7 +25,7 @@ class UserAddressScreen extends StatelessWidget {
            appBar: TAppBar(showBackArrow: true,
             title: Text('Address',style: Theme.of(context).textTheme.headlineSmall,),),
             body:  SingleChildScrollView(
-              child: Padding(padding: EdgeInsets.all(TSizes.defaultSpace),
+              child: Padding(padding: const EdgeInsets.all(TSizes.defaultSpace),
               child:Column(
                 children: [
                 Obx(

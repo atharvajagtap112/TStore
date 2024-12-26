@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:t_store/common/widgets/image/t_rounded_image.dart';
 import 'package:t_store/common/widgets/text/TProductTitleText.dart';
 import 'package:t_store/common/widgets/text/brand_title_with_verified_icon.dart';
+import 'package:t_store/features/shop/models/cart_item_model.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_function.dart';
 
 class TCardItems extends StatelessWidget {
-  const TCardItems({
+   TCardItems({
     super.key,
+    required this.cartItem, 
   });
-
+final CartItemModel cartItem;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -20,7 +22,7 @@ class TCardItems extends StatelessWidget {
             width: 60,
             height: 60, 
             padding:const EdgeInsets.all(TSizes.sm), 
-            imageUrl: TImages.productImage1,
+            imageUrl: cartItem.image!,
             backgroundColor: THelperFunctions.isDarkMode(context)? TColors.darkerGrey:TColors.light
             
        ),
@@ -30,20 +32,23 @@ class TCardItems extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const TBrandTitlewithVerifiedIcon(title: 'Nike',),
-          const Flexible (child:   TProductTitleText(text: 'Black Sports shoes dvxfgdfgfsdgsfdgfffdhdfhdfhfdshdfhfdfd',maxLines: 1,)),
+             TBrandTitlewithVerifiedIcon(title: cartItem.brandName!,),
+           Flexible (child:   TProductTitleText(text: cartItem.title,maxLines: 1,)),
             
             //Attributes
             Text.rich(
               TextSpan(
-                children: [
-                  TextSpan(text: 'Colors ',style: Theme.of(context).textTheme.bodySmall),
-                  TextSpan(text: 'Green ',style: Theme.of(context).textTheme.bodyLarge),
-                  TextSpan(text: 'Sizes ',style: Theme.of(context).textTheme.bodySmall),
-                  TextSpan(text: 'UK 08 ' ,style: Theme.of(context).textTheme.bodyLarge),
-                ]
-              )
-            )
+                children: (cartItem.selectedVariation??{})
+                          .entries// these will loop througn all the selected variations
+                          .map( //form that it will loop through all key and value pair of map insort it will loop through pair
+                            (e)=> TextSpan( 
+                             children: [ 
+                                TextSpan( text:e.key ), 
+                                TextSpan(text:  e.value)
+                             ]
+                          ) ).toList() ) )
+          
+          
     
           ],
          ),

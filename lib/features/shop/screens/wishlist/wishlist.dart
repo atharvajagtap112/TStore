@@ -8,7 +8,6 @@ import 'package:t_store/common/widgets/loaders/TVerticalProductShimmer%20.dart';
 import 'package:t_store/common/widgets/loaders/animation_loader.dart';
 import 'package:t_store/common/widgets/product/product_cards/product_card_vertical.dart';
 import 'package:t_store/features/shop/controllers/product/favourite_controller.dart';
-import 'package:t_store/features/shop/controllers/product/product_controller.dart';
 import 'package:t_store/features/shop/screens/home/home.dart';
 import 'package:t_store/navigationMenu.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
@@ -51,7 +50,7 @@ class FavouriteScreen extends StatelessWidget {
                       onActionPressed: ()=> Get.off(()=> const NavigationMenu()),
                       );
                         
-                   final widget= CloudHelperFunctions.checkMultiRecordState(snapshot: snapshot, loader: TVerticalProductShimmer(itemCount: 6,), nothingFound:emptyWidget );
+                   final widget= CloudHelperFunctions.checkMultiRecordState(snapshot: snapshot, loader: const TVerticalProductShimmer(itemCount: 6,), nothingFound:emptyWidget );
                    if( widget!=null){
                        return widget;
                    }       

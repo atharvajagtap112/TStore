@@ -5,6 +5,7 @@ import 'package:t_store/common/styles/shodows.dart';
 import 'package:t_store/common/widgets/containers/TRoundedContainer.dart';
 import 'package:t_store/common/widgets/image/t_rounded_image.dart';
 import 'package:t_store/common/widgets/product/favourite_icon.dart/favourite_icon.dart';
+import 'package:t_store/common/widgets/product/product_cards/product_cart_add_button.dart';
 import 'package:t_store/common/widgets/text/Product_price_title.dart';
 import 'package:t_store/common/widgets/text/TProductTitleText.dart';
 import 'package:t_store/common/widgets/text/brand_title_with_verified_icon.dart';
@@ -91,6 +92,8 @@ class TProductCardVertical extends StatelessWidget {
                      
 
                      const Spacer(),//push text to down side
+                         
+        //Shows Price and Sale Price
                          Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             
@@ -115,20 +118,7 @@ class TProductCardVertical extends StatelessWidget {
                           
                               
       
-                            Container(
-                              decoration: const BoxDecoration(
-                                color: TColors.dark,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular( TSizes.cardRadiusMd),
-                                  bottomRight: Radius.circular(TSizes.productImageRadius)
-                                )
-                              ),
-                              child:  const SizedBox(
-                                height: TSizes.iconLg*1.2,
-                                width: TSizes.iconLg*1.2,
-                                child: Icon(Iconsax.add,color: TColors.light ,),
-                              ),
-                            )
+                            ProductCartAddButton(product: product,)
                           ],
                          )
           ],

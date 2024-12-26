@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_store/common/widgets/AppBar/appbar.dart';
@@ -42,7 +41,7 @@ class SubCategoriesScreen extends StatelessWidget {
               FutureBuilder(
                 future: controller.getSubCategories(category.id),
                 builder: (context, snapshot) {
-                  final loader = const THorizontalProductShimmer();
+                  const loader = THorizontalProductShimmer();
                   final widget = CloudHelperFunctions.checkMultiRecordState(
                     snapshot: snapshot,
                     loader: loader,
