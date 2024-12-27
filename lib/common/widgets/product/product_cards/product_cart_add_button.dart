@@ -39,7 +39,7 @@ final controller= CartController.instance;
          return Container(
           decoration:  BoxDecoration(
             color: productQuantity>=1? TColors.primary:   TColors.dark,
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular( TSizes.cardRadiusMd),
               bottomRight: Radius.circular(TSizes.productImageRadius)
             )

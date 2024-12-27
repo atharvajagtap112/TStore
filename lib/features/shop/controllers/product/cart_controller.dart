@@ -56,6 +56,7 @@ class CartController extends GetxController {
      }else{
       cartItems.add(selectedCartItem);
      }   
+      TLoader.customToast(message: 'Your Product has been added to the Cart');
     updateCart();
 
 
@@ -172,7 +173,7 @@ final index=   cartItems.indexWhere(
       cartItems[index].quantity-=1;
     }
     else{
-      cartItems[index]==1? removeFromCartDialog(index): cartItems.removeAt(index);
+      cartItems[index].quantity==1? removeFromCartDialog(index): cartItems.removeAt(index);
     }
     updateCart();
   }  }
@@ -185,14 +186,29 @@ final index=   cartItems.indexWhere(
        middleText: 'Are you sure you want to remove this product',
        onConfirm: (){
         cartItems.removeAt(index);
-        update();
+        updateCart();
         TLoader.customToast(message: 'Product removed from the cart');
         Get.back();
        },
        onCancel: () => Get.back(),);
   }
 
-
+// Initialize already added item's count in the cart.
+void updateAlreadyAddedProductCount(ProductModel product) {
+  // If the product has no variations, then calculate cart entries and display total number.
+  // Else make default entries to 0 and show cart entries when variation is selected.
+  if (product.productType == ProductType.single.toString()) {
+    productQuantityInCart.value = getProductQuantityInCart(product.id);
+  } else {
+    // Get selected variation, if any...
+    final variationId = variationController.selectedVariation.value.id;
+    if (variationId.isNotEmpty) {
+      productQuantityInCart.value = getVariationQuantityInCart(product.id, variationId);
+    } else {
+      productQuantityInCart.value = 0;
+    }
+  }
+}
 
 
 }

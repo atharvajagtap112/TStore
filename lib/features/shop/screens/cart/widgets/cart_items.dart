@@ -23,17 +23,23 @@ class TCartItems extends StatelessWidget {
     return Obx(
    (){  
     final cartItems=controller.cartItems;
-    return ListView.separated(
+    return 
+    //List of Cart
+    ListView.separated(
         shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
         separatorBuilder: (_, __)=>const SizedBox(height: TSizes.spaceBtwSections,), 
       itemCount: cartItems.length,
+
       itemBuilder: (_,index) { 
         final item=cartItems[index];
+
         return  Column(
         children: [
-
+          // cart info
           TCardItems( cartItem: cartItems[index],),
-
+        
+         //Add remove button
           if(showAddRemoveButton)
            const SizedBox(height: TSizes.spaceBtwItems,),
           if(showAddRemoveButton)

@@ -86,7 +86,7 @@ class TProductAttribute extends StatelessWidget {
             children: [ 
              TSelectionHeading(title:attribute.name!,showActionButton: false,),
           const SizedBox(height: TSizes.spaceBtwItems/2,),
-          //when ever it exced the limet it will push down
+          //when ever it exceed the limit it will push down
           Obx( 
             ()=> Wrap(
             spacing: 8,

@@ -9,7 +9,7 @@ import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_function.dart';
 
 class TCardItems extends StatelessWidget {
-   TCardItems({
+   const TCardItems({
     super.key,
     required this.cartItem, 
   });
@@ -21,6 +21,7 @@ final CartItemModel cartItem;
         TRoundedImage(
             width: 60,
             height: 60, 
+            isNetworkImage: true,
             padding:const EdgeInsets.all(TSizes.sm), 
             imageUrl: cartItem.image!,
             backgroundColor: THelperFunctions.isDarkMode(context)? TColors.darkerGrey:TColors.light

@@ -21,7 +21,7 @@ final ProductModel product;
   Widget build(BuildContext context) {
     final dark=THelperFunctions.isDarkMode(context);
     return  Scaffold(
-      bottomSheet: const TBottomAddToCart() ,
+      bottomSheet:  TBottomAddToCart(product: product,) ,
       
       body: SingleChildScrollView(
         child: Column(

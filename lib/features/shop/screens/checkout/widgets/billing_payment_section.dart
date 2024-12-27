@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:t_store/common/widgets/containers/TRoundedContainer.dart';
 import 'package:t_store/common/widgets/selection_heading.dart';
+import 'package:t_store/features/shop/controllers/product/checkout_controller.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -12,10 +14,11 @@ class TBillingPaymentSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark=THelperFunctions.isDarkMode(context);
+    final controller=Get.put(CheckoutController());
     return  Column(
       children: [
       
-          TSelectionHeading(title: 'Payment Method', onPressed: (){}, buttonTitle: 'Change',),
+          TSelectionHeading(title: 'Payment Method', onPressed: ()=>controller.selectedPaymentMethod(), buttonTitle: 'Change',),
              
             const SizedBox(height: TSizes.spaceBtwItems/2,),
             Row(
