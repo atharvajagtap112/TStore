@@ -4,7 +4,6 @@ import 'package:t_store/common/widgets/text/TProductTitleText.dart';
 import 'package:t_store/common/widgets/text/brand_title_with_verified_icon.dart';
 import 'package:t_store/features/shop/models/cart_item_model.dart';
 import 'package:t_store/utils/constants/colors.dart';
-import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_function.dart';
 

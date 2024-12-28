@@ -36,7 +36,7 @@ class UserAddressScreen extends StatelessWidget {
                     // when ever there is change in the refreshData it will obserev of obx and change the design thats why we are using 
                     // the key to keep track
                     //when ever the future will be redrawn it will exicute it  the controller.getUserAddresses(), again
-                      future: controller.getUserAddresses(),
+                      future: controller.getAllUserAddresses(),
                       builder: (context, snapshot) {
                         final widget= CloudHelperFunctions.checkMultiRecordState(snapshot: snapshot);
                                if(widget!=null) return widget;

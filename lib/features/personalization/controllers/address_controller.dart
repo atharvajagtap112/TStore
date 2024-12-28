@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_store/common/widgets/loaders/t_loader.dart';
+import 'package:t_store/common/widgets/selection_heading.dart';
 import 'package:t_store/data/repositories/Address/address_repository.dart';
 import 'package:t_store/features/personalization/models/address_model.dart';
+import 'package:t_store/features/personalization/screens/address/add_new_address.dart';
+import 'package:t_store/features/personalization/screens/address/widgets/singleAddress.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
+import 'package:t_store/utils/constants/sizes.dart';
+import 'package:t_store/utils/helpers/cloud_helper_function.dart';
 import 'package:t_store/utils/helpers/network_manager.dart';
 import 'package:t_store/utils/popups/full_screen_loader.dart';
 
@@ -90,7 +95,7 @@ GlobalKey<FormState> addressFormKey=GlobalKey<FormState>();
    
 
     // get All user Addresses
-    Future<List<AddressModel>> getUserAddresses()async {
+    Future<List<AddressModel>> getAllUserAddresses()async {
       try{
         final  List<AddressModel> addresses= await addressRepository.getAddress();
            selectedAddress.value= addresses.firstWhere((element)=> element.selectedAddress, orElse:()=> AddressModel.empty());
@@ -101,6 +106,54 @@ GlobalKey<FormState> addressFormKey=GlobalKey<FormState>();
      } 
     
          }
+
+
+    // Show Addresses ModalBottomSheet at Checkout
+Future<dynamic> selectNewAddressPopup(BuildContext context) {
+  return showModalBottomSheet(
+    context: context,
+    builder: (_) => Container(
+      padding: const EdgeInsets.all(TSizes.lg),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const TSelectionHeading(
+            title: 'Select Address', 
+            showActionButton: false,
+          ),
+
+          FutureBuilder(
+            future: getAllUserAddresses(),
+            builder: (_, snapshot) {
+              // Helper Function: Handle Loader, No Record, OR ERROR Message
+              final response = CloudHelperFunctions.checkMultiRecordState(snapshot: snapshot);
+              if (response != null) return response;
+
+              return ListView.builder(
+                shrinkWrap: true,
+                itemCount: snapshot.data!.length,
+                itemBuilder: (_, index) => TSingleAddress(
+                  Address: snapshot.data![index],
+                  onTap: () async {
+                    await selectAddress(snapshot.data![index]);
+                    Get.back();
+                  },
+                ),
+              );
+            },
+          ),
+
+          SizedBox( 
+            width: double.infinity,
+            child: ElevatedButton(onPressed: ()=>Get.to(()=> const AddNewAddressScreen()), child: const Text('Add new address')),)
+        ],
+      ),
+    ),
+  );
+}
+
+
+
 
 
     Future<void> selectAddress(AddressModel newSelectedAddress) async{
