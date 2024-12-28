@@ -48,7 +48,8 @@ final ProductModel product;
                 // --Checkout Button
                 SizedBox(width: double.infinity,
                   child: ElevatedButton(onPressed: (){}, child:const Text('Checkout'))),
-                 
+                           
+                const SizedBox(height: TSizes.md,),
                  ///Description
                 const TSelectionHeading(title: "Description", showActionButton: false,),
                 const SizedBox(height: TSizes.spaceBtwItems,),
@@ -72,10 +73,11 @@ final ProductModel product;
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                    const TSelectionHeading(title: 'Reviews (199)', showActionButton: false,),
+                   
                    IconButton(onPressed: ()=>Get.to(()=>const ProductReviewsScreen()), icon:const Icon(Iconsax.arrow_right_3,size: 18,)),
                   ],
                 ) , 
-                     const SizedBox(height: TSizes.spaceBtwSections,),
+                 const SizedBox(height: TSizes.spaceBtwSections+40,),
              
                     
               ],

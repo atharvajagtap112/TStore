@@ -53,7 +53,7 @@ class OrderController extends GetxController {
             paymentMethod: checkoutController.selectedPaymentMethod.value.name,
             address: addressController.selectedAddress.value,
             //Set Date as needed
-            deliveryDate: DateTime.now(),
+            deliveryDate: DateTime.now().add(Duration(days: 4)),
             items: cartController.cartItems.toList(),
               );
 
