@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/widgets/AppBar/appbar.dart';
@@ -64,7 +65,12 @@ class ProfileScreen extends StatelessWidget {
             const TSelectionHeading(title: 'Personal Information', showActionButton: false,),
             const SizedBox(height: TSizes.spaceBtwItems,),
 
-             Profile_Menu(onTap: (){},  title: 'User ID',  value: controller.user.value.id,icon: Iconsax.copy,),
+             Profile_Menu(onTap: (){   Clipboard.setData(ClipboardData(text: controller.user.value.id));
+    
+    // Show a confirmation message
+    ScaffoldMessenger.of(context).showSnackBar(
+     const SnackBar(content: Text('User ID copied to clipboard!')),
+    );},  title: 'User ID',  value: controller.user.value.id,icon: Iconsax.copy,),
              Profile_Menu(onTap: (){},  title: 'E-mail',  value: controller.user.value.email,),
              Profile_Menu(onTap: (){},  title: 'Phone Number',  value: controller.user.value.phoneNumber,),
              Profile_Menu(onTap: (){},  title: 'Gender',  value: 'Male',),
