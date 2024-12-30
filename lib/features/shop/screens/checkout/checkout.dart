@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:t_store/common/widgets/AppBar/appbar.dart';
 import 'package:t_store/common/widgets/containers/TRoundedContainer.dart';
 import 'package:t_store/common/widgets/loaders/t_loader.dart';
 import 'package:t_store/common/widgets/product/cart/coupon_widgets.dart';
-import 'package:t_store/data/repositories/authentication/authentication_repository.dart';
-import 'package:t_store/features/personalization/controllers/address_controller.dart';
 import 'package:t_store/features/shop/controllers/product/cart_controller.dart';
 import 'package:t_store/features/shop/controllers/product/order_controller.dart';
 import 'package:t_store/features/shop/screens/cart/widgets/cart_items.dart';
@@ -16,7 +13,6 @@ import 'package:t_store/features/shop/screens/checkout/widgets/billing_payment_s
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_function.dart';
-import 'package:t_store/utils/helpers/network_manager.dart';
 import 'package:t_store/utils/helpers/pricing_calculator.dart';
 // ... other imports remain the same
 class CheckoutScreen extends StatelessWidget {

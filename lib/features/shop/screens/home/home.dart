@@ -8,6 +8,7 @@ import 'package:t_store/common/widgets/loaders/TVerticalProductShimmer%20.dart';
 import 'package:t_store/common/widgets/product/product_cards/product_card_vertical.dart';
 import 'package:t_store/common/widgets/selection_heading.dart';
 import 'package:t_store/features/shop/controllers/product/product_controller.dart';
+import 'package:t_store/features/shop/controllers/search_controller.dart';
 import 'package:t_store/features/shop/screens/all_product/All_Product.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home_category.dart';
@@ -36,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                 const  SizedBox(height: TSizes.spaceBtwSections,),
 
                    // Searchbar
-                 const  TSearchContainer( text:'Search in Store' ,),
+                   TSearchContainer( text:'Search in Store' ,onTap: () { showSearch(context: context, delegate:CustomSearchDelegate() );} ,),
 
                     const  SizedBox(height: TSizes.spaceBtwItems,),
 

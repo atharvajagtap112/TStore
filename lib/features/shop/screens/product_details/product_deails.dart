@@ -4,6 +4,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:readmore/readmore.dart';
 import 'package:t_store/common/widgets/selection_heading.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
+import 'package:t_store/features/shop/screens/checkout/checkout.dart';
 import 'package:t_store/features/shop/screens/product_details/widgets/bottom_add_to_cart_widgets.dart';
 import 'package:t_store/features/shop/screens/product_details/widgets/product_attributes.dart';
 import 'package:t_store/features/shop/screens/product_details/widgets/product_details_image_slider.dart';
@@ -46,10 +47,10 @@ final ProductModel product;
                 const SizedBox( height: TSizes.spaceBtwSections,),
                 
                 // --Checkout Button
-                SizedBox(width: double.infinity,
-                  child: ElevatedButton(onPressed: (){}, child:const Text('Checkout'))),
+               // SizedBox(width: double.infinity,
+                 // child: ElevatedButton(onPressed: ()=>const CheckoutScreen(), child:const Text('Checkout'))),
                            
-                const SizedBox(height: TSizes.md,),
+              //  const SizedBox(height: TSizes.md,),
                  ///Description
                 const TSelectionHeading(title: "Description", showActionButton: false,),
                 const SizedBox(height: TSizes.spaceBtwItems,),

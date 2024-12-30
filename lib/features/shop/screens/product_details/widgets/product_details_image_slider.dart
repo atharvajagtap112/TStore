@@ -24,6 +24,8 @@ final ProductModel product;
   Widget build(BuildContext context) {
     final controller=Get.put(ImagesController());
     final images=controller.getAllProductImages(product);
+     print(images); 
+     print(images.length);
       final dark=THelperFunctions.isDarkMode(context);
     return TCurvedEdgeWidget(
       child: 

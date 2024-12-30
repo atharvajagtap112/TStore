@@ -96,11 +96,13 @@ class ProductRepository extends GetxController{
            final thumbnail=await storage.getImageDataFromAssets(product.thumbnail!);
             
             final url=await storage.uploadImageData('Products/Images', thumbnail, product.thumbnail.toString());
+              await Future.delayed(const Duration(milliseconds: 500));
             product.thumbnail=url;
 
              //Brand Image
                   final logoImage= await storage.getImageDataFromAssets( product.brand!.image);
-                   final logoUrl=await storage.uploadImageData('Products/Images', logoImage, product.brand!.image)    ;
+                   final logoUrl=await storage.uploadImageData('Products/Images', logoImage, product.brand!.image);
+                     await Future.delayed(const Duration(milliseconds: 500));
                product.brand!.image=logoUrl;
                
               //product list of images
@@ -131,6 +133,8 @@ class ProductRepository extends GetxController{
 
                 //Store product in Firebase
                 await _db.collection('Products').doc(product.id).set(product.toJson());
+
+                print('${product.title}  has been  Uploaded to firebase successfully.                   :) ');
 
         }
        }  

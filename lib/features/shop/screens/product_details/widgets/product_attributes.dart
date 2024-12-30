@@ -18,7 +18,7 @@ class TProductAttribute extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark=THelperFunctions.isDarkMode(context);
     final controller=Get.put(VariationController());
-    
+     controller.resetSelectedAttribute(); 
     return Obx(
       ()
       =>Column(
@@ -33,6 +33,7 @@ class TProductAttribute extends StatelessWidget {
              
              
               const TSelectionHeading(title: 'Variation', showActionButton: false,),
+              
               const SizedBox(width: TSizes.spaceBtwInputFields,),
               Column( crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -91,9 +92,12 @@ class TProductAttribute extends StatelessWidget {
             ()=> Wrap(
             spacing: 8,
             children: attribute.values!.map( (attributeValue) {
+               // ex green etc 
+               print(attributeValue);
                        final isSelected=attributeValue==controller.selectedAttribute[attribute.name];
-                       final available=controller.getAttributesAvailabilityInVarition(product.productVariations!, attribute.name!).contains(attributeValue) ;
-                
+                       final available=controller.getAttributesAvailabilityInVarition(product.productVariations!, attribute.name!).contains(attributeValue.trim()) ;
+                       print(available);
+                         print(controller.getAttributesAvailabilityInVarition(product.productVariations!, attribute.name!.trim()));
                 return TChoiceChip(
                   text: attributeValue,
                    selected: isSelected,

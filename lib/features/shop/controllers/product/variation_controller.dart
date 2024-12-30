@@ -12,6 +12,7 @@ class VariationController extends GetxController{
   Rx<ProductVariationModel> selectedVariation=ProductVariationModel.empty().obs;
  
  void onAttributeSelected(ProductModel product, attributeName, attributeValue){
+  print(' name Attri $attributeName    valueeeeee $attributeValue ');
   // when attribute is selected we will first add that attribute to the selectedAttributes
   final selectedAtrribute=Map<String, dynamic>.from(selectedAttribute) ;
   selectedAtrribute[attributeName]=attributeValue;
@@ -41,7 +42,8 @@ class VariationController extends GetxController{
 
 
      this.selectedVariation.value=selectedVariation;
-
+     print('  Color          ${selectedVariation.attributeValues['Color']} ');
+      print('  Size     ${selectedVariation.attributeValues['Size']}');
      getProductVariationStockStatus();
  }
 
@@ -71,8 +73,16 @@ return true;
        .where( (variation)=>
                // Check Empty / Out of Stock Attributes
                //Store only variation who has stock
-              variation.attributeValues[attributeName]!=null && variation.attributeValues[attributeName]!.isNotEmpty && variation.stock>0)
+              variation.attributeValues[attributeName]!=null && variation.attributeValues[attributeName]!.isNotEmpty &&
+               variation.stock>0)
              //Fetch all non-empty attributes of variations
+            //these will have all the list of productVariation Model
+            // now we want ex [red, blue , green]
+             // just store the Arttribut value value by name ex name=color 
+             //get just color from all list of product variation
+        //now we just have avalable product now we can compare the if the product in all variation list is it has all variation list
+        //  if these list which we are returning these list values contain in the main list if it is then we will mark
+        //true that is not null to on presss   
               .map((variation)=>variation.attributeValues[attributeName] )
               .toSet();
 
