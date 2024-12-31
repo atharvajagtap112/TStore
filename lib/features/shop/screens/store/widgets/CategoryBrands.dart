@@ -18,6 +18,7 @@ class CategoryBrands extends StatelessWidget {
     return FutureBuilder(
       future: controller.getBrandsForCategory(categoryId:  category.id, limit: 4),
       builder: (context, snapshot) {
+       
         const loader = Column(
           children: [
             TListTileShimmer(),

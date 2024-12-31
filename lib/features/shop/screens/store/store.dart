@@ -91,7 +91,8 @@ class StoreScreen extends StatelessWidget {
       
           
            body:  TabBarView(
-
+                                  // contain  
+                                  // products and product for category
             children: 
               list.map((category)=>  TCategoryTab(category:category )).toList()
             

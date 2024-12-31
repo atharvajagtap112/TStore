@@ -109,7 +109,7 @@ class TProductCardVertical extends StatelessWidget {
                                       //Price shows sale price or main price if exist
                                      Padding(
                                 padding: const EdgeInsets.only(left: TSizes.sm),
-                                child: TProductPriceText(price: controller.getProductPrice(product) ,),
+                                child: TProductPriceText(price: controller.getProductPrice(product) , isLarge: false,),
                               ),
                                   ],
                                  ),

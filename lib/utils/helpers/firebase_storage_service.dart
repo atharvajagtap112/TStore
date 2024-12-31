@@ -54,7 +54,7 @@ Future<Uint8List> getImageDataFromAssets(String path) async {
       final ref = _firebaseStorage.ref(path).child(name);
       await ref.putData(image);
       final url = await ref.getDownloadURL();
-     print('$name\'s image has been uploaded to storage successfully                    :) ');
+     print('${name}\nimage has been uploaded to storage successfully :) ');
       return url;
       
     } catch (e) {

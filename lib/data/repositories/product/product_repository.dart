@@ -178,8 +178,11 @@ class ProductRepository extends GetxController{
      final querySnapshot = limit==-1
      ? await _db.collection('ProductCategories').where('categoryId', isEqualTo: categoryId).get() :  
                     await _db.collection('ProductCategories').where('categoryId', isEqualTo: categoryId).limit(limit).get();
+              
 
-          final List<String> productIds= querySnapshot.docs.map((doc)=>doc['productId'] as String).toList();      
+
+          final List<String> productIds= querySnapshot.docs.map((doc)=>doc['productId'] as String).toList();    
+          print(productIds);  
 
          final productQuery=await _db.collection('Products').where(FieldPath.documentId, whereIn: productIds).get();
        final List<ProductModel> products =  productQuery.docs.map( (doc)=> ProductModel.fromSnapshot(doc)).toList();

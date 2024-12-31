@@ -51,7 +51,7 @@ final ProductModel product;
           Positioned(
             right: 0,
             bottom: 30,
-            left: TSizes.defaultSpace,
+            left: 10,
             child: SizedBox(
                height: 80,
               child:  ListView.separated(

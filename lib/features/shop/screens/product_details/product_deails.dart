@@ -31,7 +31,7 @@ final ProductModel product;
              TProductImageSlider(product:product),
 
             // Product Details
-             Padding(padding: const EdgeInsets.only(right:TSizes.defaultSpace, left: TSizes.defaultSpace,bottom:TSizes.defaultSpace),
+             Padding(padding: const EdgeInsets.only(right:TSizes.md, left: TSizes.md, bottom:TSizes.defaultSpace),
              child: Column
              (
               children: [

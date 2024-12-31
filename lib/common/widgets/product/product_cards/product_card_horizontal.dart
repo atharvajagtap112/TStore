@@ -33,7 +33,7 @@ class TProductCardHorziontal extends StatelessWidget {
             borderRadius: BorderRadius.circular(TSizes.productImageRadius),
             color :dark? TColors.darkerGrey:TColors.softGrey,
           ),
-          child: Row(
+          child: Row( 
             children: [
               TRoundedContainer(
                 height: 120,
@@ -69,15 +69,18 @@ class TProductCardHorziontal extends StatelessWidget {
                   ],
                 ),
               ),
-            
+                
              SizedBox(
               width: 172,
               child: Padding(
                 padding: const EdgeInsets.only(top: TSizes.sm, left: TSizes.sm),
                 child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                     
                       children: [
                         TProductTitleText(text: product.title, smallSize: true,),
                         const SizedBox(height: TSizes.spaceBtwItems/2,),
@@ -91,21 +94,19 @@ class TProductCardHorziontal extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               
                             children: [
-                                 Flexible(
-                                   child: Column(
-                                    children: [
-                                      if(product.salePrice>0 && product.productType==ProductType.single)
-                                      Padding( // shows the price 
-                                  padding: const EdgeInsets.only(left: TSizes.sm),
-                                  child:Text( controller.getProductPrice(product) , style: Theme.of(context).textTheme.labelMedium!.apply(decoration:TextDecoration.lineThrough),),
-                                ),
-                                        
-                                        //Price shows sale price or main price if exist
-                                       Padding(
-                                  padding: const EdgeInsets.only(left: TSizes.sm),
-                                  child: TProductPriceText(price: controller.getProductPrice(product) ,),
-                                ),
-                                    ],
+                                 Expanded( 
+                                  flex: 70,
+                                   child: Flexible(
+                                     child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        if(product.salePrice>0 && product.productType==ProductType.single)
+                                        Text( controller.getProductPrice(product) , style: Theme.of(context).textTheme.labelMedium!.apply(decoration:TextDecoration.lineThrough),),
+                                          
+                                          //Price shows sale price or main price if exist
+                                         TProductPriceText(price: controller.getProductPrice(product) ,),
+                                      ],
+                                     ),
                                    ),
                                  ),
                             

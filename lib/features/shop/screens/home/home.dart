@@ -28,9 +28,11 @@ class HomeScreen extends StatelessWidget {
     
       body: SingleChildScrollView(
         child: Column(
+        
           children: [
               TPrimaryHeaderContainer(
               child:  Column(
+               
                 children:  [
                   //Custom AppBar
                  const THomeAppBar(),
@@ -42,7 +44,7 @@ class HomeScreen extends StatelessWidget {
                     const  SizedBox(height: TSizes.spaceBtwItems,),
 
                   Padding(
-                    padding: const EdgeInsets.only(left:  TSizes.defaultSpace),
+                    padding: const EdgeInsets.only(left:  TSizes.defaultSpace-10),
                     child: Column(
                       children: [
                         //Heading
@@ -61,7 +63,7 @@ class HomeScreen extends StatelessWidget {
 
               //Body
               Padding(
-                padding: const EdgeInsets.all(TSizes.defaultSpace),
+                padding: const EdgeInsets.all(TSizes.defaultSpace-5),
                 child: Column(
                   children: [
                     const TPromoSlider(),

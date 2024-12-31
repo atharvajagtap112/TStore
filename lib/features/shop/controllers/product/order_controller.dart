@@ -61,7 +61,7 @@ class OrderController extends GetxController {
       final user = AuthenticationRepository.instance.authUser;
 
          final options = {
-      'key': 'rzp_test_LocOnkj4uO2xre....',
+      'key': 'rzp_test_LocOnkj4uO2xre',
       'amount': 1000,
       'name': 'Your Store Name',
       'description': 'Order Payment',

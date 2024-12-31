@@ -51,11 +51,7 @@ class TVerticalImageText extends StatelessWidget {
                     ? CachedNetworkImage(
                         imageUrl: image,
                         fit: BoxFit.cover,
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator(
-                          color: TColors.black,
-                          strokeWidth: 2.0,
-                        ),
+                      
                         errorWidget: (context, url, error) =>
                             const Icon(Icons.error, color: Colors.red),
                       )

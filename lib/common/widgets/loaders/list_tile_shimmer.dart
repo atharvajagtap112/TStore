@@ -16,7 +16,7 @@ class TListTileShimmer extends StatelessWidget {
            Column(
                children: [
                      TShimmerEffect(width: 100, height: 15),
-                     SizedBox( width: TSizes.spaceBtwItems,),
+                     SizedBox( height: TSizes.sm,),
                      TShimmerEffect(width: 80, height: 12),])
                      ],)
       ],

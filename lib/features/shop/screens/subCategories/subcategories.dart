@@ -31,6 +31,7 @@ class SubCategoriesScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const TRoundedImage(
+                fit: BoxFit.fill,
                 imageUrl: TImages.banner3,
                 width: double.infinity,
                 applyImageRadius: true,
@@ -40,6 +41,7 @@ class SubCategoriesScreen extends StatelessWidget {
               /// Subcategories
               FutureBuilder(
                 future: controller.getSubCategories(category.id),
+                
                 builder: (context, snapshot) {
                   const loader = THorizontalProductShimmer();
                   final widget = CloudHelperFunctions.checkMultiRecordState(
