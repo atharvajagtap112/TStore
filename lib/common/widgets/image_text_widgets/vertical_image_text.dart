@@ -43,7 +43,7 @@ class TVerticalImageText extends StatelessWidget {
             padding:const EdgeInsets.all(TSizes.sm),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
-              color: backgroundColor??(THelperFunctions.isDarkMode(context)? TColors.white:TColors.black)
+              color: backgroundColor??(THelperFunctions.isDarkMode(context)? TColors.black:TColors.white)
               
             ),
             child: Center(
@@ -51,14 +51,14 @@ class TVerticalImageText extends StatelessWidget {
                     ? CachedNetworkImage(
                         imageUrl: image,
                         fit: BoxFit.cover,
-                      
+                      color:THelperFunctions.isDarkMode(context)?  TColors.light : TColors.dark ,
                         errorWidget: (context, url, error) =>
                             const Icon(Icons.error, color: Colors.red),
                       )
                     : Image.asset(
                         image,
                         fit: BoxFit.cover,
-                        color: TColors.black,
+                        color:THelperFunctions.isDarkMode(context)?  TColors.black : TColors.white ,
                       ),)
           ),
       

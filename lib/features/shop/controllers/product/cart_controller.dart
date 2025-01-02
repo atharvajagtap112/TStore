@@ -15,7 +15,7 @@ class CartController extends GetxController {
   RxInt productQuantityInCart=0.obs;
   RxList<CartItemModel> cartItems=<CartItemModel>[].obs;
   final variationController=VariationController.instance; // these will have the current data of selected variation 
-    
+  RxDouble originalPrice=0.0.obs;  
    CartController(){
     loadCartItems();
    } 
@@ -209,6 +209,17 @@ void updateAlreadyAddedProductCount(ProductModel product) {
     }
   }
 }
+
+   void updatePriceWithDiscount(double discountAmount) {
+    print(discountAmount);
+    // Store original price if not already stored
+    final originalPrice = totalCartPrice.value + discountAmount;
+    print( totalCartPrice.value);
+    totalCartPrice.value = totalCartPrice.value - discountAmount;
+    print("-----------------------------------------------------------");
+    print( totalCartPrice.value);
+
+  }
 
 
 }

@@ -21,7 +21,7 @@ class AppRoutes {
     GetPage(name: TRoutes.store, page: () => const StoreScreen()),
     GetPage(name: TRoutes.favourites, page: () => const FavouriteScreen()),
     GetPage(name: TRoutes.settings, page: () => const SettingsScreen()),
-    GetPage(name: TRoutes.productReviews, page: () => const ProductReviewsScreen()),
+    GetPage(name: TRoutes.productReviews, page: () => const ProductReviewsScreen(reviewModleList: [],)),
     GetPage(name: TRoutes.order, page: () => const OrderScreen()),
     GetPage(name: TRoutes.checkout, page: () => const CheckoutScreen()),
     GetPage(name: TRoutes.cart, page: () => const CartScreen()),

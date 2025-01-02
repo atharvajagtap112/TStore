@@ -46,7 +46,7 @@ class OrderController extends GetxController {
   void _handlePaymentError(PaymentFailureResponse response) {
     TLoader.errorSnackBar(
       title: 'Payment Failed',
-      message: response.message ?? 'An error occurred during payment',
+      
     );
   }
 
@@ -56,14 +56,21 @@ class OrderController extends GetxController {
       TLoader.customToast(message: 'No Network');
       return;
     }
+      
+      if( addressController.selectedAddress.value.id.isEmpty) {
+        TLoader.customToast(message:'Select Address');
+        return;
+      }
+
+
 
     try {
       final user = AuthenticationRepository.instance.authUser;
 
          final options = {
       'key': 'rzp_test_LocOnkj4uO2xre',
-      'amount': 1000,
-      'name': 'Your Store Name',
+      'amount':amount*100,
+      'name': 'T Store',
       'description': 'Order Payment',
       'prefill': {
         'contact': user?.phoneNumber ?? '',
@@ -156,7 +163,7 @@ class OrderController extends GetxController {
             final order=OrderModel(
             id:UniqueKey().toString() ,
             userId: userId,
-            status: OrderStatus.pending,
+            status: OrderStatus.delivered,
             totalAmount: totalAmount,
             orderDate: DateTime.now(),
             paymentMethod: checkoutController.selectedPaymentMethod.value.name,

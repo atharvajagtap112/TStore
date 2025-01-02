@@ -10,6 +10,7 @@ import 'package:t_store/common/widgets/product/product_cards/TBrandCard.dart';
 import 'package:t_store/common/widgets/selection_heading.dart';
 import 'package:t_store/features/personalization/controllers/category_controller.dart';
 import 'package:t_store/features/shop/controllers/brand_controller.dart';
+import 'package:t_store/features/shop/controllers/search_controller.dart';
 import 'package:t_store/features/shop/screens/brand/all_brand.dart';
 import 'package:t_store/features/shop/screens/brand/brand_products.dart';
 
@@ -55,7 +56,7 @@ class StoreScreen extends StatelessWidget {
                                //Search Bar
                            const SizedBox( height: TSizes.spaceBtwItems,),
                            
-                          const  TSearchContainer(text: "Search in Store",showBackground: false,padding: EdgeInsets.zero,),
+                            TSearchContainer(text: "Search in Store",showBackground: false,padding: EdgeInsets.zero, onTap: ()=>showSearch(context: context, delegate:CustomSearchDelegate() ),),
                            const SizedBox( height: TSizes.spaceBtwItems,),
       
                             /// -- Feature Brands

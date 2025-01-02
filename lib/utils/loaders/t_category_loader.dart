@@ -14,9 +14,9 @@ class TCategoryLoader extends StatelessWidget {
        scrollDirection: Axis.horizontal,
        itemCount: 6,
        itemBuilder: (_, index) {
-         return Padding(
-           padding: const EdgeInsets.only(right: TSizes.sm),
-           child: const Column(
+         return const Padding(
+           padding: EdgeInsets.only(right: TSizes.sm),
+           child: Column(
             children: [
                TShimmerEffect(width: 55, height: 55, radius: 55,),
                  SizedBox(height:TSizes.spaceBtwItems ,),

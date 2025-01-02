@@ -121,7 +121,7 @@ Future<dynamic> selectNewAddressPopup(BuildContext context) {
             title: 'Select Address', 
             showActionButton: false,
           ),
-
+         const SizedBox(height: TSizes.md,),
           FutureBuilder(
             future: getAllUserAddresses(),
             builder: (_, snapshot) {
@@ -142,8 +142,9 @@ Future<dynamic> selectNewAddressPopup(BuildContext context) {
               );
             },
           ),
-
+          const SizedBox(height: TSizes.md),
           SizedBox( 
+            
             width: double.infinity,
             child: ElevatedButton(onPressed: ()=>Get.to(()=> const AddNewAddressScreen()), child: const Text('Add new address')),)
         ],

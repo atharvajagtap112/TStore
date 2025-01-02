@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:t_store/common/widgets/loaders/t_loader.dart';
 import 'package:t_store/data/repositories/product/product_repository.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
@@ -65,7 +66,7 @@ fetchProducts();
          
       }
       if(smallestPrice.isEqual(largestPrice)) return largestPrice.toString();
-      return '$smallestPrice - \$$largestPrice';
+      return '${formateAmount(smallestPrice)} - ₹${formateAmount(largestPrice)}';
     }
 
     String? calculateSalePercentage(double orignalPrice, double?  salePrice){
@@ -79,7 +80,10 @@ fetchProducts();
       return stock >0? 'In Stock' :'Out of Stock';
     }
          
-   
+         static String formateAmount(double amount){
+              return NumberFormat('#,##0.0').format(amount);
+         }
+
 
 
 }

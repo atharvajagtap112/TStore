@@ -43,7 +43,7 @@ class TProductAttribute extends StatelessWidget {
                       const SizedBox( width: TSizes.sm,),
 
                       if(controller.selectedVariation.value.salePrice>0)
-                      Text('\₹ ${controller.selectedVariation.value.price}',style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),),
+                      Text('₹ ${controller.selectedVariation.value.price}',style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),),
                      if(controller.selectedVariation.value.salePrice>0)
                       const SizedBox(width: TSizes.sm,),
 

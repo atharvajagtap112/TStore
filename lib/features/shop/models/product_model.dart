@@ -20,7 +20,7 @@ class ProductModel {
   String productType;
   List<ProductAttributeModel>? productAttributes;
   List<ProductVariationModel>? productVariations;
-
+  
   ProductModel({
     required this.id,
     required this.stock,

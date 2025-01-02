@@ -104,7 +104,7 @@ class TProductCardHorziontal extends StatelessWidget {
                                         Text( controller.getProductPrice(product) , style: Theme.of(context).textTheme.labelMedium!.apply(decoration:TextDecoration.lineThrough),),
                                           
                                           //Price shows sale price or main price if exist
-                                         TProductPriceText(price: controller.getProductPrice(product) ,),
+                                         TProductPriceText(price:controller.getProductPrice(product) ,),
                                       ],
                                      ),
                                    ),

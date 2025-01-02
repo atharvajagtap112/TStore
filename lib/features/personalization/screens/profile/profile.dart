@@ -10,6 +10,7 @@ import 'package:t_store/features/personalization/screens/profile/change_name.dar
 import 'package:t_store/features/personalization/screens/profile/widgets/profile_menu.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
+import 'package:t_store/utils/loaders/t_shimmerLoader.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -37,10 +38,11 @@ class ProfileScreen extends StatelessWidget {
                       (){
                         final networkImage=controller.user.value.profilePicture;
                          final image=networkImage.isNotEmpty? networkImage: TImages.user;
+                         if(controller. profileLoader.value) return const TShimmerEffect(width: 50, height: 50, radius: 50,);
                         return TCircularImage(image: image , isNetworkImage: networkImage.isNotEmpty, width: 80, height: 80,);
                       }
                      ),
-                     TextButton(onPressed:()=> controller.uploadImageProfilePicture, child:const Text('Change Profile Picture'))
+                     TextButton(onPressed:()=> controller.uploadImageProfilePicture(), child:const Text('Change Profile Picture'))
                   ],
                 ),
               ),

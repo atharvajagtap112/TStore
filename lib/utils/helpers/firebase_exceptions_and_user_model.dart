@@ -75,6 +75,27 @@ class UserModel {
     required this.phoneNumber,
     required this.profilePicture,
   });
+
+
+  UserModel copyWith({
+  String? id,
+  String? username,
+  String? email,
+  String? firstName,
+  String? lastName,
+  String? phoneNumber,
+  String? profilePicture,
+}) {
+  return UserModel(
+    id: id ?? this.id,
+    username: username ?? this.username,
+    email: email ?? this.email,
+    firstName: firstName ?? this.firstName,
+    lastName: lastName ?? this.lastName,
+    phoneNumber: phoneNumber ?? this.phoneNumber,
+    profilePicture: profilePicture ?? this.profilePicture,
+  );
+}
    
    // Helper function to get the full name
   String get fullName => '$firstName $lastName';

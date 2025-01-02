@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:readmore/readmore.dart';
 import 'package:t_store/common/widgets/selection_heading.dart';
+import 'package:t_store/features/shop/controllers/review_controller.dart';
 import 'package:t_store/features/shop/models/product_model.dart';
-import 'package:t_store/features/shop/screens/checkout/checkout.dart';
 import 'package:t_store/features/shop/screens/product_details/widgets/bottom_add_to_cart_widgets.dart';
 import 'package:t_store/features/shop/screens/product_details/widgets/product_attributes.dart';
 import 'package:t_store/features/shop/screens/product_details/widgets/product_details_image_slider.dart';
@@ -13,6 +13,7 @@ import 'package:t_store/features/shop/screens/product_details/widgets/rating_sha
 import 'package:t_store/features/shop/screens/product_reviews/product_reviews.dart';
 import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/constants/sizes.dart';
+import 'package:t_store/utils/helpers/cloud_helper_function.dart';
 import 'package:t_store/utils/helpers/helper_function.dart';
 
 class ProductDeails extends StatelessWidget {
@@ -21,6 +22,8 @@ final ProductModel product;
   @override
   Widget build(BuildContext context) {
     final dark=THelperFunctions.isDarkMode(context);
+    final controller=Get.put(ReviewController());
+    
     return  Scaffold(
       bottomSheet:  TBottomAddToCart(product: product,) ,
       
@@ -36,7 +39,7 @@ final ProductModel product;
              (
               children: [
                 //Rating & Share Button
-                const Rating_Share_Widget(),
+                 Rating_Share_Widget(productId: product.id,),
                  TProductMetaData(product: product,),
                 
 
@@ -70,13 +73,22 @@ final ProductModel product;
                 // -Reviews
                 
                 const SizedBox(height: TSizes.spaceBtwItems,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                   const TSelectionHeading(title: 'Reviews (199)', showActionButton: false,),
+             FutureBuilder(
+                  future: controller.getReviewsOfProducts(product.id),
+                  builder: (context, snapshot) {
+                     final widget=CloudHelperFunctions.checkMultiRecordState(snapshot: snapshot);
                    
-                   IconButton(onPressed: ()=>Get.to(()=>const ProductReviewsScreen()), icon:const Icon(Iconsax.arrow_right_3,size: 18,)),
-                  ],
+
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TSelectionHeading(title: 'Reviews (${widget==null? snapshot.data!.length : 0})', showActionButton: false,),
+
+                       if(widget==null) 
+                        IconButton(onPressed: ()=>Get.to(  ()=> ProductReviewsScreen(reviewModleList: snapshot.data!,)), icon:const Icon(Iconsax.arrow_right_3,size: 18,)),
+                      ],
+                    );
+                  }
                 ) , 
                  const SizedBox(height: TSizes.spaceBtwSections+40,),
              

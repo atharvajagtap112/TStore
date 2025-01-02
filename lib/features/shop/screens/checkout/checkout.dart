@@ -9,11 +9,11 @@ import 'package:t_store/features/shop/controllers/product/order_controller.dart'
 import 'package:t_store/features/shop/screens/cart/widgets/cart_items.dart';
 import 'package:t_store/features/shop/screens/checkout/widgets/biling_amount_section.dart';
 import 'package:t_store/features/shop/screens/checkout/widgets/billing_address_section.dart';
-import 'package:t_store/features/shop/screens/checkout/widgets/billing_payment_section.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_function.dart';
 import 'package:t_store/utils/helpers/pricing_calculator.dart';
+import 'package:intl/intl.dart';
 // ... other imports remain the same
 class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({super.key});
@@ -25,7 +25,7 @@ class CheckoutScreen extends StatelessWidget {
     final dark = THelperFunctions.isDarkMode(context);
     final subTotal = cartController.totalCartPrice.value;
     final totalAmount = TPricingCalculator.calculateTotalPrice(subTotal, 'US');
-
+     final formattedAmount = NumberFormat('#,##0.00').format(totalAmount);    
     return Scaffold(
       appBar: TAppBar(
         showBackArrow: true,
@@ -51,8 +51,8 @@ class CheckoutScreen extends StatelessWidget {
                   TBillingAmountSection(),
                   SizedBox(height: TSizes.spaceBtwItems),
                   Divider(),
-                  SizedBox(height: TSizes.spaceBtwItems),
-                  TBillingPaymentSection(),
+                  //SizedBox(height: TSizes.spaceBtwItems),
+                  // TBillingPaymentSection(),
                   SizedBox(height: TSizes.spaceBtwItems),
                   TBillingAddressSection(),
                 ],
@@ -70,9 +70,10 @@ class CheckoutScreen extends StatelessWidget {
                     title: 'Empty Cart',
                     message: 'Add items in the cart to proceed.',
                   ),
-          child: Text('Checkout \$$totalAmount'),
+          child: Text('Checkout ₹$formattedAmount'),
         ),
       ),
     );
   }
 }
+

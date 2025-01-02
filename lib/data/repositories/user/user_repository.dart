@@ -77,6 +77,8 @@ class UserRepository extends GetxController {
 
          //update any field in specific Users Collection
       Future<void> updateSingleField(Map<String,dynamic> json) async{
+        print('------------------------------------------------------------');
+        print(AuthenticationRepository.instance.authUser);
         try{
        await _db.collection('Users').doc(AuthenticationRepository.instance.authUser?.uid).update(json);
         }
@@ -117,22 +119,24 @@ class UserRepository extends GetxController {
         Future<String> uploadImage(String path, XFile image) async{
           try{
             final ref= FirebaseStorage.instance.ref(path).child(image.name);
-            ref.putFile(File( image.path));
+           await ref.putFile(File( image.path));
             final url=ref.getDownloadURL();
-           
+            print('-------------------------------------------------');
+           print(url);
                 return url; 
             
           }
-            on FirebaseException catch(e){
-        throw TFirebaseException(e.code).message;
-       }
-        on FormatException catch(_){
-        throw const TFormatException().message;
-       }
-        on PlatformException catch(e){
-          throw TPlatformException(e.code).message;
-        }
+      //       on FirebaseException catch(e){
+      //   throw TFirebaseException(e.code).message;
+      //  }
+      //   on FormatException catch(_){
+      //   throw const TFormatException().message;
+      //  }
+      //   on PlatformException catch(e){
+      //     throw TPlatformException(e.code).message;
+      //   }
         catch(e){
+          print(e.toString());
           throw 'Something went wrong. pLease try again';
         }
         }

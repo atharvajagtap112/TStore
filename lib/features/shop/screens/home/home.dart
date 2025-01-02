@@ -48,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         //Heading
-                        TSelectionHeading(title:'Popular Categories' ,onPressed: (){},textColor: TColors.white,),
+                        TSelectionHeading(title:'Popular Categories' ,onPressed: (){}, showActionButton: false,textColor: TColors.white,),
                         
                        const SizedBox(height: TSizes.spaceBtwItems,),
                           //category

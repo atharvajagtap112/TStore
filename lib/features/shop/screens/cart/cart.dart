@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:t_store/common/widgets/AppBar/appbar.dart';
 import 'package:t_store/common/widgets/loaders/animation_loader.dart';
 import 'package:t_store/features/shop/controllers/product/cart_controller.dart';
@@ -14,7 +15,7 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   final controller=CartController.instance;
+      final controller=CartController.instance;
     return Scaffold(
       appBar: TAppBar( showBackArrow: true,title: Text('Cart',style: Theme.of(context).textTheme.headlineSmall,), ),
       body: Obx( (){ 
@@ -46,7 +47,8 @@ class CartScreen extends StatelessWidget {
         
    
      bottomNavigationBar: Padding(padding: const EdgeInsets.all(TSizes.defaultSpace),
-     child: ElevatedButton(onPressed: ()=>Get.to(()=> const CheckoutScreen()), child:  Obx(()=>Text('Checkout \$${controller.totalCartPrice}')))
+     child: ElevatedButton(
+      onPressed: ()=>Get.to(()=> const CheckoutScreen()), child:  Obx(()=>Text('Checkout ₹${NumberFormat('#,##0.00').format(controller.totalCartPrice.value)}')))
      
      )
  );}

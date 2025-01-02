@@ -4,6 +4,13 @@ description: "A new Flutter project."
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 
+flutter_launcher_icons:
+ android: true
+ ios: true
+ image_path: "assets/logos/t-store-splash-logo-black.png"
+ min_sdk_android: 21
+ remove_alpha_ios: true
+
 version: 1.0.0+1
 
 environment:
@@ -19,7 +26,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   # Utility Package
   http: ^1.2.2
-  intl: ^0.19.0
+  intl: ^0.20.1
   logger: ^2.4.0
   url_launcher: ^6.3.1
   get_storage: ^2.1.1
@@ -44,11 +51,11 @@ dependencies:
   cached_network_image: ^3.4.1
   firebase_app_check: ^0.3.1+7
   flutter_stripe: ^11.3.0
+
 dev_dependencies:
   flutter_test:
-    sdk: flutter
-
-  
+   sdk: flutter
+  flutter_launcher_icons: ^0.13.1
   flutter_lints: ^4.0.0
 
 
@@ -71,6 +78,8 @@ flutter:
     - assets/icons/categories/  
     - assets/images/products/
     - assets/images/reviews/
+    #- assets/logos/t-store-splash-logo-black.png
+   # - assets/logos/t-store-splash-logo-white.png
     - assets/images/content/user.png
     - assets/icons/payment_methods/
     - assets/images/banners/

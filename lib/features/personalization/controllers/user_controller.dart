@@ -43,6 +43,7 @@ class UserController extends GetxController{
         }
         catch(e){
           user(UserModel.empty());
+           profileLoader.value=false;
         }
         finally{
           profileLoader.value=false;
@@ -160,17 +161,29 @@ Get.offAll(()=> const LoginScreen());
   
  void uploadImageProfilePicture() async{
      try{
+        // Show loading indicator
+ 
+      
      final image= await ImagePicker().pickImage(source: ImageSource.gallery , imageQuality: 70, maxHeight: 512, maxWidth: 512);
      if(image !=null){
+      profileLoader.value = true;
       final imageUrl= await UserRepository.instance.uploadImage('Users/Images/Profile', image);
+      print("UUUUUSSSSSEEEEEEEEERRRRRRRRRRR");
+      print(imageUrl);
       Map<String, dynamic> json={'ProfilePicture':imageUrl};
       await UserRepository.instance.updateSingleField(json);
     
-      user.value.profilePicture=imageUrl;
+      //user.value.profilePicture=imageUrl;
+       // Update local user model
+      final updatedUser = user.value.copyWith(profilePicture: imageUrl);
+      user(updatedUser);
      TLoader.successSnackBar(title: 'Congratulations', message: 'Your Profile Image has been updated!');
      }}
      catch(e){
+      print(e.toString());
       TLoader.errorSnackBar(title:'OhSnap' , message:'Something went wrong: $e' );
+     }finally{
+       profileLoader.value = false;
      }
  } 
 }          
