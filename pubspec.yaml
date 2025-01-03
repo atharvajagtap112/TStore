@@ -4,12 +4,6 @@ description: "A new Flutter project."
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 
-flutter_launcher_icons:
- android: true
- ios: true
- image_path: "assets/logos/t-store-splash-logo-black.png"
- min_sdk_android: 21
- remove_alpha_ios: true
 
 version: 1.0.0+1
 
@@ -57,7 +51,13 @@ dev_dependencies:
    sdk: flutter
   flutter_launcher_icons: ^0.13.1
   flutter_lints: ^4.0.0
+ 
 
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logos/splash-logo-black.png"
+  min_sdk_android: 21 
 
 
 flutter:

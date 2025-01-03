@@ -26,7 +26,7 @@ final productId;
               FutureBuilder(
                 future: controller.getReviewsOfProducts(productId),
                 builder: (context, snapshot) {
-              final widget=    CloudHelperFunctions.checkMultiRecordState(snapshot: snapshot, nothingFound: Text('No reviews yet'));
+              final widget=    CloudHelperFunctions.checkMultiRecordState(snapshot: snapshot, nothingFound: const Text('No reviews yet'));
                   if(widget!=null) return widget;
                    
                   return Text.rich(
