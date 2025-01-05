@@ -65,7 +65,7 @@ Below is the list of Flutter packages used in this project:
 ## Demo Video
 Check out the demo video to see T-Store in action:
 
-[![T-Store Demo](https://github-production-user-asset-6210df.s3.amazonaws.com/117553929/400210002-e3823a9f-bed4-4a2f-ab63-f417d5527a71.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250105%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250105T152007Z&X-Amz-Expires=300&X-Amz-Signature=04ecb1953c39fb3c0968a0ce813548a31cb75213ba9fea3490c8643b317c3469&X-Amz-SignedHeaders=host)](https://www.youtube.com/watch?v=AsGzwR_FWok)
+[![T-Store Demo](https://github.com/user-attachments/assets/e8abe58f-e7d4-4590-af3c-aa4c702e9ecf)](https://www.youtube.com/watch?v=AsGzwR_FWok)
 
 *Click on the thumbnail to watch the video on YouTube.*
 
