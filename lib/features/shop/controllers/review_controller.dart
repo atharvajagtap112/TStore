@@ -110,8 +110,8 @@ class ReviewController extends GetxController {
         sum+=reviewModel.rating;
        }
        
-      avgRating.value=sum/5;
-      return sum/5;
+      avgRating.value=sum/list.length;
+      return sum/list.length;
    }
  
 }
