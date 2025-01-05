@@ -108,52 +108,65 @@ GlobalKey<FormState> addressFormKey=GlobalKey<FormState>();
          }
 
 
-    // Show Addresses ModalBottomSheet at Checkout
 Future<dynamic> selectNewAddressPopup(BuildContext context) {
   return showModalBottomSheet(
+    isScrollControlled: true, // Add this to allow modal to expand
     context: context,
     builder: (_) => Container(
-      padding: const EdgeInsets.all(TSizes.lg),
+      // Add padding to account for bottom safe area
+      padding: EdgeInsets.only(
+        top: TSizes.lg,
+        left: TSizes.lg,
+        right: TSizes.lg,
+        bottom: MediaQuery.of(context).viewPadding.bottom + TSizes.lg,
+      ),
       child: Column(
+        mainAxisSize: MainAxisSize.min, // Add this to make column wrap content
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const TSelectionHeading(
-            title: 'Select Address', 
+            title: 'Select Address',
             showActionButton: false,
           ),
-         const SizedBox(height: TSizes.md,),
+          const SizedBox(height: TSizes.md),
           FutureBuilder(
             future: getAllUserAddresses(),
             builder: (_, snapshot) {
-              // Helper Function: Handle Loader, No Record, OR ERROR Message
               final response = CloudHelperFunctions.checkMultiRecordState(snapshot: snapshot);
               if (response != null) return response;
 
-              return ListView.builder(
-                shrinkWrap: true,
-                itemCount: snapshot.data!.length,
-                itemBuilder: (_, index) => TSingleAddress(
-                  Address: snapshot.data![index],
-                  onTap: () async {
-                    await selectAddress(snapshot.data![index]);
-                    Get.back();
-                  },
+              return ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxHeight: MediaQuery.of(context).size.height * 0.5, // Limit height to 50% of screen
+                ),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: snapshot.data!.length,
+                  itemBuilder: (_, index) => TSingleAddress(
+                    Address: snapshot.data![index],
+                    onTap: () async {
+                      await selectAddress(snapshot.data![index]);
+                      Get.back();
+                    },
+                  ),
                 ),
               );
             },
           ),
           const SizedBox(height: TSizes.md),
-          SizedBox( 
-            
+          SizedBox(
             width: double.infinity,
-            child: ElevatedButton(onPressed: ()=>Get.to(()=> const AddNewAddressScreen()), child: const Text('Add new address')),)
+            child: ElevatedButton(
+              onPressed: () => Get.to(() => const AddNewAddressScreen()),
+              child: const Text('Add new address'),
+            ),
+          ),
         ],
       ),
     ),
   );
 }
-
-
 
 
 

@@ -51,11 +51,11 @@ class TCouponCode extends StatelessWidget {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: couponController.isCouponValid.value
-                          ? TColors.error.withOpacity(0.3)
-                          : TColors.grey.withOpacity(0.5),
+                          ? TColors.error
+                          :  dark? TColors.grey: TColors.dark,
                       foregroundColor: dark
-                          ? TColors.white.withOpacity(0.5)
-                          : TColors.dark.withOpacity(0.5),
+                          ? TColors.dark 
+                          : TColors.white,
                       side: BorderSide(color: Colors.grey.withOpacity(0.1)),
                     ),
                     onPressed: () {

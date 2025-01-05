@@ -66,10 +66,10 @@ class OrderController extends GetxController {
 
     try {
       final user = AuthenticationRepository.instance.authUser;
-
+ final amountInPaise = (amount * 100).round();
          final options = {
       'key': 'rzp_test_LocOnkj4uO2xre',
-      'amount':amount*100,
+      'amount':  amountInPaise,
       'name': 'T Store',
       'description': 'Order Payment',
       'prefill': {
@@ -163,7 +163,7 @@ class OrderController extends GetxController {
             final order=OrderModel(
             id:UniqueKey().toString() ,
             userId: userId,
-            status: OrderStatus.delivered,
+            status: OrderStatus.pending,
             totalAmount: totalAmount,
             orderDate: DateTime.now(),
             paymentMethod: checkoutController.selectedPaymentMethod.value.name,

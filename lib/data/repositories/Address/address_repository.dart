@@ -7,7 +7,9 @@ class AddressRepository extends GetxController{
      static AddressRepository get instance=> Get.find();
      final _db=FirebaseFirestore.instance;
 
-  Future<String> addAddress(AddressModel address) async{
+  Future<String> 
+  
+  addAddress(AddressModel address) async{
       final userId=AuthenticationRepository.instance.authUser!.uid;
    if(userId.isEmpty) {
     throw " User is null";

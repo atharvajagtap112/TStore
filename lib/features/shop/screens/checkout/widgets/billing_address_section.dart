@@ -34,11 +34,19 @@ class TBillingAddressSection extends StatelessWidget {
               ),
                
            
-              Row(
+              Row( 
                              children: [
                               const  Icon(Icons.location_history, color: Colors.grey, size: 16,) ,
                                const SizedBox( width: TSizes.spaceBtwItems,),                                 
-                               Text(controller.selectedAddress.value.toString() ,style: Theme.of(context).textTheme.bodyMedium, softWrap: true,)
+                               Expanded(
+                                 child: Text(
+                                   controller.selectedAddress.value.toString(),
+                                   style: Theme.of(context).textTheme.bodyMedium,
+                                   softWrap: true,
+                                   overflow: TextOverflow.ellipsis, // Adds an ellipsis (...) to the overflowing text
+                                   maxLines: 1, // Limits the text to one line
+                                 ),
+                               ),
                               
                              ],
                            ),
