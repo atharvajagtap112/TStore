@@ -1,0 +1,78 @@
+{
+    "icecreams": [
+    {
+        "id": 1,
+      "category": "Classic",
+       "isFeatured": true,
+
+    "flavor": "Vanilla",
+    "description": "Classic and creamy vanilla flavor",
+    "toppings": [ "Chocolate Sauce", "Sprinkles", "Whipped Cream"],
+    "price": 4.99,
+    "image": "https://images.unsplash.com/photo-1560008581-09826d1de69e?q=80&w=1488&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "ingredients": [
+    { "name": "Vanilla Extract", "quantity": "2 tsp"},
+    { "name": "Heavy Cream", "quantity": "2 cups" },
+    { "name": "Sugar", "quantity": "3/4 cup" }
+    ]
+    },
+    {
+        "id": 2,
+      "category": "Chocolate",
+       "isFeatured": true,
+      "flavor": "Chocolate",
+    "description": "Rich and indulgent chocolate ice cream made from premium",
+    "toppings": ["Caramel Drizzle", "Chopped Nuts", "Chocolate Chips"],
+    "price": 5.49,
+    "image": "https://images.unsplash.com/photo-1580915411954-282cb1b0d780?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "ingredients": [
+    { "name": "Cocoa Powder", "quantity": "1/2 cup"},
+    { "name": "Whipping Cream", "quantity": "1/2 сups"},
+    { "name": "Egg Yolks", "quantity": "4" }
+]},
+{
+    "id": 3,
+      "category": "Strawberry",
+       "isFeatured": true,
+
+    "flavor": "Strawberry",
+"description": "Sweet and refreshing strawberry flavor with real fruit ",
+"toppings": ["Fresh Strawberries", "Rainbow Sprinkles", "Condensed Milk"],
+"price": 4.79,
+"image": "https://images.unsplash.com/photo-1532678465554-94846274c297?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+"ingredients": [
+{ "name": "Strawberries", "quantity": "1 cup"},
+{ "name": "Sugar", "quantity": "1/2 cup" },
+{ "name": "Heavy Cream", "quantity": "2 cups" }
+]
+},
+{
+    "id": 4,
+      "category": "Pistachio",
+       "isFeatured": true,
+"flavor": "Pistachio",
+"description": "Delicate pistachio-flavored ice cream made with real pista",
+"toppings": [ "Crushed Pistachios", "Honey Drizzle", "Rose Petals"],
+"price": 6.29,
+"image": "https://images.unsplash.com/photo-1534706936160-d5ee67737249?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+"ingredients": [
+{ "name": "Pistachio Nuts", "quantity": "1/2 cup" },
+{ "name": "Honey", "quantity": "2 tbsp" },
+{ "name": "Heavy Cream", "quantity": "1 1/2 cups" }
+]
+},
+{
+    "id": 5,
+    "category": "Caramel Swirl",
+     "isFeatured": true,
+"flavor": "Caramel Swirl",
+"description": "Sweet and buttery caramel ice cream with ribbons of caramel",
+"toppings": ["Salted Caramel", "Caramel Popcorn", "Sea Salt"],
+"price": 5.79,
+"image": "https://plus.unsplash.com/premium_photo-1695868328802-5725036905eb?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+"ingredients": [
+{ "name": "Caramel Sauce", "quantity": "1/2 cup" },
+{ "name": "Caramel Candy", "quantity": "1/4 cup" },
+{ "name": "Heavy Cream", "quantity": "1 1/4 cups" }
+]
+}]}

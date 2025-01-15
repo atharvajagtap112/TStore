@@ -85,7 +85,7 @@ class TCouponCode extends StatelessWidget {
                   const Icon(Icons.discount_outlined, color: TColors.primary),
                   const SizedBox(width: TSizes.sm),
                   Text(
-                    'You saved \$${couponController.discountAmount.value.toStringAsFixed(2)}',
+                    'You saved \₹${couponController.discountAmount.value.toStringAsFixed(2)}',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           color: TColors.primary,
                         ),
